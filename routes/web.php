@@ -1,6 +1,9 @@
 <?php
 
+use App\Http\Controllers\LectureController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\RoleController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -28,4 +31,7 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
+Route::resource('roles', RoleController::class);
+Route::resource('users', UserController::class);
+Route::resource('lectures', LectureController::class);
 require __DIR__.'/auth.php';
