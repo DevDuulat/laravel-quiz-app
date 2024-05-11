@@ -32,6 +32,8 @@
                         <li><a class="nav-link" href="{{ route('users.index') }}">Manage Users</a></li>
                         <li><a class="nav-link" href="{{ route('roles.index') }}">Manage Role</a></li>
                         <li><a class="nav-link" href="{{ route('lectures.index') }}">Manage Lecture</a></li>
+                        <li><a class="nav-link" href="{{ route('tests.index') }}">Manage Test</a></li>
+
                         <li class="ms-3 nav-item dropdown">
                             <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                 {{ Auth::user()->name }} <span class="caret"></span>
