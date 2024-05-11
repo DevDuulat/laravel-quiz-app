@@ -32,6 +32,7 @@
                         <li><a class="nav-link" href="{{ route('users.index') }}">Manage Users</a></li>
                         <li><a class="nav-link" href="{{ route('roles.index') }}">Manage Role</a></li>
                         <li><a class="nav-link" href="{{ route('lectures.index') }}">Manage Lecture</a></li>
+                        <li><a class="nav-link" href="{{ route('blogs.index') }}">Manage Blog</a></li>
                         <li><a class="nav-link" href="{{ route('tests.index') }}">Manage Test</a></li>
 
                         <li class="ms-3 nav-item dropdown">

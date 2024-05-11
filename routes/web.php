@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\BlogController;
 use App\Http\Controllers\LectureController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\QuestionController;
@@ -36,6 +37,7 @@ Route::middleware('auth')->group(function () {
 Route::resource('roles', RoleController::class);
 Route::resource('users', UserController::class);
 Route::resource('lectures', LectureController::class);
+Route::resource('blogs', BlogController::class);
 Route::resource('tests', TestController::class);
 Route::resource('questions', QuestionController::class);
 Route::get('/tests/{test}/questions/create', [QuestionController::class, 'create'])->name('questions.create');
