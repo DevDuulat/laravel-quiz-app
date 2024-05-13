@@ -16,8 +16,9 @@ return new class extends Migration
             $table->string('question');
             $table->string('answer');
             $table->json('options')->nullable();
-            $table->unsignedBigInteger('test_id')->after('id');
+            $table->unsignedBigInteger('test_id');
             $table->timestamps();
+            $table->foreign('test_id')->references('id')->on('tests');
         });
     }
 
@@ -26,8 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('questions', function (Blueprint $table) {
-            $table->dropColumn('test_id');
-        });
+        Schema::dropIfExists('questions');
     }
 };

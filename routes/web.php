@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\LectureController;
+use App\Http\Controllers\PageController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\QuestionController;
 use App\Http\Controllers\RoleController;
@@ -20,9 +21,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+
+Route::get('/',[PageController::class, 'home'])->name('home');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -42,5 +42,9 @@ Route::resource('tests', TestController::class);
 Route::resource('questions', QuestionController::class);
 Route::get('/tests/{test}/questions/create', [QuestionController::class, 'create'])->name('questions.create');
 Route::post('/tests/{test}', [QuestionController::class, 'store'])->name('questions.store');
+Route::get('about-us',[PageController::class, 'about'])->name('about');
+Route::get('contact',[PageController::class, 'contact'])->name('contact');
+Route::get('blog',[BlogController::class, 'BlogUser'])->name('blog-user');
+Route::get('blog-detail',[BlogController::class, 'BlogDetail'])->name('blog.detail');
 
 require __DIR__.'/auth.php';

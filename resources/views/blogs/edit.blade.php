@@ -24,7 +24,7 @@
             </div>
         @endif
 
-        <form action="{{ route('blogs.update', $blog->id) }}" method="POST">
+        <form action="{{ route('blogs.update', $blog->id) }}" method="POST" enctype="multipart/form-data">
             @csrf
             @method('PUT')
             <div class="row">
@@ -49,9 +49,10 @@
                 <div class="col-xs-12 mb-3">
                     <div class="form-group">
                         <strong>Cover Image:</strong>
-                        <input type="text" name="cover" class="form-control" placeholder="Cover Image URL" value="{{ old('cover', $blog->cover) }}">
+                        <input type="file" name="cover" class="form-control">
                     </div>
                 </div>
+
                 <div class="col-xs-12 mb-3">
                     <div class="form-group">
                         <strong>Content:</strong>
