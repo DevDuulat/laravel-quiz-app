@@ -44,7 +44,7 @@ Route::get('/tests/{test}/questions/create', [QuestionController::class, 'create
 Route::post('/tests/{test}', [QuestionController::class, 'store'])->name('questions.store');
 Route::get('about-us',[PageController::class, 'about'])->name('about');
 Route::get('contact',[PageController::class, 'contact'])->name('contact');
-Route::get('blog',[BlogController::class, 'BlogUser'])->name('blog-user');
-Route::get('blog-detail',[BlogController::class, 'BlogDetail'])->name('blog.detail');
+Route::get('blog',[PageController::class, 'BlogUser'])->name('blog-user');
+Route::get('blog-detail/{id}', [PageController::class, 'BlogDetail'])->name('blog.detail');
 
 require __DIR__.'/auth.php';

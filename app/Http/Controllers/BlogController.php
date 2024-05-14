@@ -12,6 +12,7 @@ class BlogController extends Controller
 {
     public function __construct()
     {
+        $this->middleware('admin');
         $this->middleware('auth');
     }
 
@@ -19,15 +20,6 @@ class BlogController extends Controller
     {
         $blogs = Blog::all();
         return view('blogs.index', compact('blogs'));
-    }
-    public function BlogUser()
-    {
-        $blogs = Blog::all();
-        return view('blog', compact('blogs'));
-    }
-    public function BlogDetail(Blog $blog)
-    {
-        return view('blog-detail', compact('blog'));
     }
 
     public function create()

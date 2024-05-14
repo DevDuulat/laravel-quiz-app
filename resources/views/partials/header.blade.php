@@ -53,8 +53,10 @@
                         </ul>
                     </div>
                     <!-- Button trigger modal -->
-                    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
-                         aria-labelledby="exampleModalLabel" aria-hidden="true">
+
+
+                    <!-- Modal Structure -->
+                    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                         <div class="modal-dialog" role="document">
                             <div class="modal-content p-5">
                                 <div class="modal-header">
@@ -64,21 +66,56 @@
                                     </button>
                                 </div>
                                 <div class="modal-body">
-                                    <form>
-                                        <input type="email" placeholder="Введите Email..." required="">
-                                        <input type="password" placeholder="Введите пароль">
-                                        <label class="checkbox-inline mr-5"><input type="checkbox"
-                                                                                   value="">Запомнить меня</label>
-                                        <a class="primary-color" href="#"><u>Забыл пароль</u></a>
-                                        <input class="btn btn-primary btn-sm" type="submit" value="Вход">
+                                    <!-- Login Form -->
+                                    <form method="POST" action="{{ route('login') }}">
+                                        @csrf
+
+                                        <!-- Session Status -->
+                                        <x-auth-session-status class="mb-4" :status="session('status')" />
+
+                                        <!-- Email Address -->
+                                        <div class="form-group">
+                                            <x-input-label for="email" :value="__('Email')" />
+                                            <x-text-input id="email" class="form-control" type="email" name="email" :value="old('email')" required autofocus autocomplete="username" />
+                                            <x-input-error :messages="$errors->get('email')" class="mt-2" />
+                                        </div>
+
+                                        <!-- Password -->
+                                        <div class="form-group mt-4">
+                                            <x-input-label for="password" :value="__('Password')" />
+                                            <x-text-input id="password" class="form-control" type="password" name="password" required autocomplete="current-password" />
+                                            <x-input-error :messages="$errors->get('password')" class="mt-2" />
+                                        </div>
+
+                                        <!-- Remember Me -->
+                                        <div class="form-group form-check mt-4">
+                                            <input id="remember_me" type="checkbox" class="form-check-input" name="remember">
+                                            <label for="remember_me" class="form-check-label">
+                                                {{ __('Remember me') }}
+                                            </label>
+                                        </div>
+
+                                        <!-- Forgot Password and Login Button -->
+                                        <div class="form-group mt-4">
+                                            @if (Route::has('password.request'))
+                                                <a class="d-block mb-2" href="{{ route('password.request') }}">
+                                                    {{ __('Forgot your password?') }}
+                                                </a>
+                                            @endif
+
+                                            <x-primary-button class="btn btn-primary">
+                                                {{ __('Log in') }}
+                                            </x-primary-button>
+                                        </div>
                                     </form>
                                 </div>
                             </div>
                         </div>
                     </div>
 
-                    <div class="modal fade" id="exampleModal2" tabindex="-1" role="dialog"
-                         aria-labelledby="exampleModalLabel" aria-hidden="true">
+
+                    <!-- Modal Structure -->
+                    <div class="modal fade" id="exampleModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                         <div class="modal-dialog" role="document">
                             <div class="modal-content p-5">
                                 <div class="modal-header">
@@ -88,20 +125,61 @@
                                     </button>
                                 </div>
                                 <div class="modal-body">
-                                    <form class="signup-form text-center">
-                                        <div class="row">
-                                            <div class="col-lg-6">
-                                                <input type="text" placeholder="Имя">
-                                            </div>
-                                            <div class="col-lg-6">
-                                                <input type="text" placeholder="Фамилия">
+                                    <!-- Registration Form -->
+                                    <form method="POST" action="{{ route('register') }}">
+                                        @csrf
+
+                                        <!-- First Name and Last Name -->
+                                        <!-- Email Address -->
+                                        <div class="mb-3">
+                                                <div class="form-group">
+                                                    <x-input-label for="first_name" :value="__('Имя')" />
+                                                    <x-text-input id="first_name" class="form-control" type="text" name="name" :value="old('first_name')" required autofocus autocomplete="given-name" />
+                                                    <x-input-error :messages="$errors->get('first_name')" class="mt-2" />
+                                                </div>
+                                        </div>
+
+
+                                        <!-- Email Address -->
+                                        <div class="mb-3">
+                                            <div class="form-group">
+                                                <x-input-label for="email" :value="__('Email')" />
+                                                <x-text-input id="email" class="form-control" type="email" name="email" :value="old('email')" required autocomplete="username" />
+                                                <x-input-error :messages="$errors->get('email')" class="mt-2" />
                                             </div>
                                         </div>
-                                        <input type="email" placeholder="Введите Email..." required="">
-                                        <input type="password" placeholder="Введите пароль">
-                                        <input type="password" placeholder="Введите повторно пароль">
 
-                                        <input class="btn btn-primary btn-sm" type="submit" value="Регистрация">
+                                        <!-- Password -->
+                                        <div class="mb-3">
+                                            <div class="form-group">
+                                                <x-input-label for="password" :value="__('Password')" />
+                                                <x-text-input id="password" class="form-control" type="password" name="password" required autocomplete="new-password" />
+                                                <x-input-error :messages="$errors->get('password')" class="mt-2" />
+                                            </div>
+                                        </div>
+
+                                        <!-- Confirm Password -->
+                                        <div class="mb-3">
+                                            <div class="form-group">
+                                                <x-input-label for="password_confirmation" :value="__('Confirm Password')" />
+                                                <x-text-input id="password_confirmation" class="form-control" type="password" name="password_confirmation" required autocomplete="new-password" />
+                                                <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
+                                            </div>
+                                        </div>
+
+                                        <!-- Already Registered -->
+                                        <div class="form-group">
+                                            <a class="underline text-sm text-gray-600 hover:text-gray-900" href="{{ route('login') }}">
+                                                {{ __('Already registered?') }}
+                                            </a>
+                                        </div>
+
+                                        <!-- Register Button -->
+                                        <div class="text-center">
+                                            <x-primary-button class="btn btn-primary">
+                                                {{ __('Register') }}
+                                            </x-primary-button>
+                                        </div>
                                     </form>
                                 </div>
                             </div>

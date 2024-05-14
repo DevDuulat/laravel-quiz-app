@@ -7,15 +7,13 @@
             padding: 10px;
             margin-bottom: 20px;
         }
-
-
     </style>
     <div class="row">
         <div class="col-lg-12 margin-tb mb-4">
             <div class="pull-left">
-                <h2>Create Question
+                <h2>Создать Вопрос
                     <div class="float-end">
-                        <a class="btn btn-primary" href="{{ route('tests.index') }}"> Back</a>
+                        <a class="btn btn-primary" href="{{ route('tests.index') }}"> Назад</a>
                     </div>
                 </h2>
             </div>
@@ -29,7 +27,7 @@
             @foreach ($test->questions as $question)
                 <div class="question">
                     <h3>{{ $question->question }}</h3>
-                    <p>Answer: {{ $question->answer }}</p>
+                    <p>Ответ: {{ $question->answer }}</p>
                     @if (!empty($question->options))
                         <ul>
                             @foreach ($question->options as $option)

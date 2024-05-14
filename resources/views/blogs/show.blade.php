@@ -8,26 +8,26 @@
                     <h2>{{ $blog->title }}</h2>
                 </div>
                 <div class="float-end">
-                    <a class="btn btn-primary" href="{{ route('blogs.index') }}">Back to List</a>
+                    <a class="btn btn-primary" href="{{ route('blogs.index') }}">Вернуться к списку</a>
                 </div>
             </div>
         </div>
 
         <div class="row">
             <div class="col-xs-12 mb-3">
-                <p><strong>Description:</strong> {{ $blog->description }}</p>
+                <p><strong>Описание:</strong> {{ $blog->description }}</p>
             </div>
             <div class="col-xs-12 mb-3">
-                <p><strong>Publication Date:</strong> {{ $blog->publication_date }}</p>
+                <p><strong>Дата публикации:</strong> {{ $blog->publication_date }}</p>
             </div>
             @if ($blog->cover)
                 <div class="col-xs-12 mb-3">
-                    <img src="{{ asset('storage/' . $blog->cover) }}" alt="Cover Image" class="img-fluid">
+                    <img src="{{ asset('storage/' . $blog->cover) }}" alt="Обложка" class="img-fluid">
                 </div>
             @endif
 
             <div class="col-xs-12 mb-3">
-                <div><strong>Content:</strong></div>
+                <div><strong>Содержание:</strong></div>
                 <div>{!! nl2br(e($blog->content)) !!}</div>
             </div>
         </div>

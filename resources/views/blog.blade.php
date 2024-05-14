@@ -37,7 +37,7 @@
                                 </ul>
                                 <h4 class="card-title mb-4"><a href="{{ route('blog.detail', $blog->id) }}">{{ $blog->title }}</a></h4>
                                 <p class="card-text">{{ $blog->description }}</p>
-                                <a class="btn btn-primary btn-round btn-sm" href="{{ route('blog.detail', $blog->id) }}">Читать далее</a>
+                                <a class="btn btn-primary btn-round btn-sm" href="{{ route('blog.detail', ['id' => $blog->id]) }}">Читать далее</a>
                             </div>
                         </div><!-- card -->
                     </div>

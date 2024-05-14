@@ -4,9 +4,9 @@
     <div class="row">
         <div class="col-lg-12 margin-tb mb-4">
             <div class="pull-left">
-                <h2>Create New Lecture
+                <h2>Создать новую лекцию
                     <div class="float-end">
-                        <a class="btn btn-primary" href="{{ route('lectures.index') }}"> Back</a>
+                        <a class="btn btn-primary" href="{{ route('lectures.index') }}"> Назад</a>
                     </div>
                 </h2>
             </div>
@@ -15,7 +15,7 @@
 
     @if (count($errors) > 0)
         <div class="alert alert-danger">
-            <strong>Whoops!</strong> There were some problems with your input.<br><br>
+            <strong>Упс!</strong> Возникли некоторые проблемы с вашими данными.<br><br>
             <ul>
                 @foreach ($errors->all() as $error)
                     <li>{{ $error }}</li>
@@ -24,35 +24,35 @@
         </div>
     @endif
 
-    <form action="{{ route('lectures.store') }}" method="POST">
+    <form action="{{ route('lectures.store') }}" method="POST" enctype="multipart/form-data">
         @csrf
         <div class="row">
             <div class="col-xs-12 mb-3">
                 <div class="form-group">
-                    <strong>Title:</strong>
-                    <input type="text" name="title" class="form-control" placeholder="Title">
+                    <strong>Название:</strong>
+                    <input type="text" name="title" class="form-control" placeholder="Название">
                 </div>
             </div>
             <div class="col-xs-12 mb-3">
                 <div class="form-group">
-                    <strong>Text:</strong>
-                    <textarea class="form-control" style="height:150px" name="text" placeholder="Text"></textarea>
+                    <strong>Текст:</strong>
+                    <textarea class="form-control" style="height:150px" name="text" placeholder="Текст"></textarea>
                 </div>
             </div>
             <div class="col-xs-12 mb-3">
                 <div class="form-group">
-                    <strong>Publication Date:</strong>
+                    <strong>Дата публикации:</strong>
                     <input type="date" name="publication_date" class="form-control">
                 </div>
             </div>
             <div class="col-xs-12 mb-3">
                 <div class="form-group">
-                    <strong>Cover Image URL:</strong>
-                    <input type="text" name="image_url" class="form-control" placeholder="Cover Image URL">
+                    <strong>Изображение обложки:</strong>
+                    <input type="file" name="image_url" class="form-control">
                 </div>
             </div>
             <div class="col-xs-12 mb-3 text-center">
-                <button type="submit" class="btn btn-primary">Submit</button>
+                <button type="submit" class="btn btn-primary">Отправить</button>
             </div>
         </div>
     </form>
