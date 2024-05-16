@@ -41,9 +41,14 @@
                     @endif
                 </td>
                 <td>
+                    <form action="{{ route('users.destroy', $user->id) }}" method="POST">
                     <a class="btn btn-info" href="{{ route('users.show',$user->id) }}">Просмотр</a>
                     <a class="btn btn-primary" href="{{ route('users.edit',$user->id) }}">Редактирование</a>
-                    <a class="btn btn-success" href="{{ route('users.destroy',$user->id) }}"> Удаление</a>
+
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" class="btn btn-danger">Удалить</button>
+                    </form>
                 </td>
             </tr>
         @endforeach

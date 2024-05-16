@@ -36,7 +36,7 @@
             <div class="col-xs-12 mb-3">
                 <div class="form-group">
                     <strong>Текст:</strong>
-                    <textarea class="form-control" style="height:150px" name="text" placeholder="Текст"></textarea>
+                    <textarea class="form-control" id="editor" name="text" placeholder="Текст"></textarea>
                 </div>
             </div>
             <div class="col-xs-12 mb-3">
@@ -57,3 +57,9 @@
         </div>
     </form>
 @endsection
+@section('scripts')
+    <script src="https://cdn.ckeditor.com/ckeditor5/35.3.2/classic/ckeditor.js"></script>
+    <script src="{{ asset('js/ckeditor-init.js') }}"></script>
+@endsection
+
+

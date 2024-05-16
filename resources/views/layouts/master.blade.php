@@ -35,23 +35,15 @@
                         <li><a class="nav-link" href="{{ route('lectures.index') }}">Лекции</a></li>
                         <li><a class="nav-link" href="{{ route('blogs.index') }}">Блог</a></li>
                         <li><a class="nav-link" href="{{ route('tests.index') }}">Тест</a></li>
-
-                        <li class="ms-3 nav-item dropdown">
-                            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                {{ Auth::user()->name }} <span class="caret"></span>
+                        <li><a class="nav-link" href="#">  {{ Auth::user()->name }}</a></li>
+                        <li><a class="nav-link" href="{{ route('logout') }}"
+                               onclick="event.preventDefault();
+                               document.getElementById('logout-form').submit();">
+                                Выйти
                             </a>
-
-                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="{{ route('logout') }}"
-                                   onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                  Выйти
-                                </a>
-
-                                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                     @csrf
-                                </form>
-                            </div>
+                            </form>
                         </li>
                     @endguest
                 </ul>
@@ -62,6 +54,7 @@
     <main class="py-4 bg-light">
         <div class="container">
             @yield('content')
+            @yield('scripts')
         </div>
     </main>
 </div>
