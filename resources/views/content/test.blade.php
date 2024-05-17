@@ -13,7 +13,7 @@
                 <div class="info_box ">
                     <div class="info-title"><span>Некоторые правила тестирования</span></div>
                     <div class="info-list">
-                        <div class="info">1. На каждый вопрос у вас будет <span>15 </span> секунд</div>
+                        <div class="info">1. На каждый вопрос у вас будет <span>{{$test->time_to_answer}} </span> секунд</div>
                         <div class="info">2. После того как вы выберете ответ, его нельзя будет отменить..</div>
                         <div class="info">3. Вы не сможете выбрать какой-либо вариант, когда время истечет..</div>
                         <div class="info">4. Вы не можете выйти из викторины во время игры..</div>
@@ -137,7 +137,7 @@
     restart_quiz.onclick = () => {
         quiz_box.classList.add('activeQuiz') //show quiz box
         result_box.classList.remove('activeResult') //hide result box
-        timeValue = 15
+        timeValue = {{$test->time_to_answer}};
         que_count = 0
         que_numb = 1
         userScore = 0
