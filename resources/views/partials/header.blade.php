@@ -20,9 +20,15 @@
                                     </a>
                                 </li>
                                 <li class="active"><a href="/">Главная</a></li>
-                                <li><a href="{{route('about')}}">О проекте</a></li>
+
+                                @auth
+                                    <li><a href="{{ route('content') }}">Учебные материалы</a></li>
+                                @else
+                                    <li><a href="{{route('about')}}">О проекте</a></li>
+                                    <li><a href="{{route('contact')}}">Контакты</a></li>
+                                @endauth
                                 <li><a href="{{route('blog-user')}}">Блок</a></li>
-                                <li><a href="{{route('contact')}}">Контакты</a></li>
+
                             </ul>
                         </nav>
                     </div>

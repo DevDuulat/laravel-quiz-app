@@ -24,14 +24,14 @@
 
     <table class="table table-striped table-hover">
         <tr>
-            <th>Название</th>
+            <th width="50px">Название</th>
             <th>Описание</th>
-            <th width="430px">Действия</th>
+            <th width="530px">Действия</th>
         </tr>
         @foreach ($tests as $test)
             <tr>
                 <td>{{ $test->name }}</td>
-                <td>{{ $test->description }}</td>
+                <td>{!! Str::limit($test->description, 250)  !!}</td>
                 <td>
                     <form action="{{ route('tests.destroy',$test->id) }}" method="POST">
                         <a class="btn btn-info" href="{{ route('questions.create',$test->id) }}">Создать вопросы</a>

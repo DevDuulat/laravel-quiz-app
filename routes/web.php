@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\BlogController;
+use App\Http\Controllers\ContentController;
 use App\Http\Controllers\LectureController;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\ProfileController;
@@ -25,13 +26,14 @@ use Illuminate\Support\Facades\Route;
 Route::get('/',[PageController::class, 'home'])->name('home');
 
 Route::get('/dashboard', function () {
-    return view('dashboard');
+    return view('profile.index');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    Route::put('/profile/photo', [ProfileController::class, 'updatePhoto'])->name('profile.photo.update');
 });
 
 Route::resource('roles', RoleController::class);
@@ -45,6 +47,9 @@ Route::post('/tests/{test}', [QuestionController::class, 'store'])->name('questi
 Route::get('about-us',[PageController::class, 'about'])->name('about');
 Route::get('contact',[PageController::class, 'contact'])->name('contact');
 Route::get('blog',[PageController::class, 'BlogUser'])->name('blog-user');
-Route::get('blog-detail/{id}', [PageController::class, 'BlogDetail'])->name('blog.detail');
+Route::get('blog-detail/{blog}', [PageController::class, 'BlogDetail'])->name('blog.detail');
+Route::get('/content', [ContentController::class, 'index'])->name('content');
+Route::get('/content/lecture/{lecture}', [ContentController::class, 'showLecture'])->name('lecture.details');
+Route::get('/content/test/{test}', [ContentController::class, 'testing'])->name('test.details');
 
 require __DIR__.'/auth.php';

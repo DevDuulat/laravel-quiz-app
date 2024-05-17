@@ -34,6 +34,6 @@
 <script src="{{ asset('js/owl.carousel.min.js') }}"></script>
 <script src="{{ asset('js/plugins.js') }}"></script>
 <script src="{{ asset('js/scripts.js') }}"></script>
-<script src="{{ asset('js/test.js') }}"></script>
+{{--<script src="{{ asset('js/test.js') }}"></script>--}}
 </body>
 </html>

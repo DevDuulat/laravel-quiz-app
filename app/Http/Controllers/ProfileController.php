@@ -20,7 +20,7 @@ class ProfileController extends Controller
     }
     public function edit(Request $request): View
     {
-        return view('profile.edit', [
+        return view('profile.index', [
             'user' => $request->user(),
         ]);
     }
@@ -39,6 +39,23 @@ class ProfileController extends Controller
         $request->user()->save();
 
         return Redirect::route('profile.edit')->with('status', 'profile-updated');
+    }
+    public function updatePhoto(Request $request)
+    {
+        $request->validate([
+            'avatar' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048', // убедитесь, что это соответствует вашим требованиям
+        ]);
+
+        $user = auth()->user();
+
+        // Сохраните загруженный файл в хранилище и получите его путь
+        $avatarPath = $request->file('avatar')->store('avatars', 'public');
+
+        // Обновите путь к аватару пользователя в базе данных
+        $user->avatar = $avatarPath;
+        $user->save();
+
+        return redirect()->route('profile.edit')->with('status', 'Фотография профиля успешно обновлена.');
     }
 
     /**

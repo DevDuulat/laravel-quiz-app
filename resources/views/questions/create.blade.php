@@ -27,7 +27,7 @@
                     </div>
                     <div class="form-group">
                         <label for="options">Варианты ответов (JSON)</label>
-                        <input type="text" name="options[][options]" class="form-control" placeholder='["Вариант 1", "Вариант 2", "Вариант 3", "Вариант 4"]'>
+                        <input type="text" name="options[][options]" class="form-control" value='["Вариант 1", "Вариант 2", "Вариант 3", "Вариант 4"]' placeholder='["Вариант 1", "Вариант 2", "Вариант 3", "Вариант 4"]'>
                     </div>
                 </div>
             </div>

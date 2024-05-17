@@ -29,7 +29,7 @@
                 @foreach ($blogs as $blog)
                     <tr>
                         <td>{{ $blog->title }}</td>
-                        <td>{{ $blog->description }}</td>
+                        <td>{!! Str::limit($blog->description, 250)  !!}</td>
                         <td>{{ $blog->publication_date }}</td>
                         <td>
                             <a href="{{ route('blogs.show', $blog->id) }}" class="btn btn-info">Просмотр</a>

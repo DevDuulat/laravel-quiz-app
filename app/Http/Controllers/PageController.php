@@ -19,7 +19,8 @@ class PageController extends Controller
     }
     public function BlogDetail(Blog $blog)
     {
-        return view('blog-detail', compact('blog'));
+        $randomBlogs = Blog::inRandomOrder()->limit(5)->get();
+        return view('blog-detail', compact('blog', 'randomBlogs'));
     }
     public function about()
     {

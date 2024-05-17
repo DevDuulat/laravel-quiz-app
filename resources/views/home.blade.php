@@ -62,9 +62,9 @@
                                     <li><i class="fa fa-clock-o"></i> {{ $blog->publication_date }}</li>
                                     <li><i class="fa fa-comments"></i> {{ $blog->comments_count }} комментариев</li>
                                 </ul>
-                                <h4 class="card-title mb-4"><a href="{{ route('blog.detail', $blog->id) }}">{{ $blog->title }}</a></h4>
+                                <h4 class="card-title mb-4"><a href="{{ route('blog.detail', ['blog' => $blog->id]) }}}">{{ $blog->title }}</a></h4>
                                 <p class="card-text">{{ $blog->description }}</p>
-                                <a class="btn btn-primary btn-round btn-sm" href="{{ route('blog.detail', ['id' => $blog->id]) }}">Читать далее</a>
+                                <a class="btn btn-primary btn-round btn-sm" href="{{ route('blog.detail', ['blog' => $blog->id]) }}">Читать далее</a>
                             </div>
                         </div><!-- card -->
                     @endforeach

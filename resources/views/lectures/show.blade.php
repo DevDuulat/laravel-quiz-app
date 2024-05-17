@@ -24,7 +24,7 @@
         <div class="col-xs-12 mb-3">
             <div class="form-group">
                 <strong>Текст:</strong>
-                {{ $lecture->text }}
+                {!! $lecture->text !!}
             </div>
         </div>
         <div class="col-xs-12 mb-3">

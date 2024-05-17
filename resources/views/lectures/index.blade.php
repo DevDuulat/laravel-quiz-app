@@ -26,12 +26,13 @@
         <tr>
             <th>Название</th>
             <th>Детали</th>
-            <th width="280px">Действие</th>
+            <th width="380px">Действие</th>
         </tr>
         @foreach ($lectures as $lecture)
             <tr>
                 <td>{{ $lecture->title }}</td>
-                <td>{{ $lecture->text }}</td>
+
+                <td>{!! Str::limit($lecture->text, 250)  !!}</td>
                 <td>
                     <form action="{{ route('lectures.destroy',$lecture->id) }}" method="POST">
                         <a class="btn btn-info" href="{{ route('lectures.show',$lecture->id) }}">Просмотр</a>
