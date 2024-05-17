@@ -25,9 +25,9 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/',[PageController::class, 'home'])->name('home');
 
-Route::get('/dashboard', function () {
-    return view('profile.index');
-})->middleware(['auth', 'verified'])->name('dashboard');
+Route::get('/dashboard', [ProfileController::class, 'dashboard'])
+    ->middleware(['auth', 'verified'])
+    ->name('dashboard');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

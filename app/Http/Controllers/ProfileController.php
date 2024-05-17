@@ -18,8 +18,15 @@ class ProfileController extends Controller
     {
         $this->middleware('auth');
     }
+    public function dashboard()
+    {
+        $user = Auth::user();
+        return view('profile.index', compact('user'));
+    }
+
     public function edit(Request $request): View
     {
+
         return view('profile.index', [
             'user' => $request->user(),
         ]);
