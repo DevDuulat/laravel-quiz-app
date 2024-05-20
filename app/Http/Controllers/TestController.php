@@ -37,7 +37,7 @@ class TestController extends Controller
         ]);
 
         return redirect()->route('tests.index')
-            ->with('success', 'Test created successfully.');
+            ->with('success', 'Тест создан успешно.');
     }
 
     public function show(Test $test)
@@ -60,7 +60,7 @@ class TestController extends Controller
         $test->update($request->all());
 
         return redirect()->route('tests.index')
-            ->with('success', 'Test updated successfully');
+            ->with('success', 'Тест успешно обновлен');
     }
 
     public function destroy(Test $test)
@@ -68,6 +68,6 @@ class TestController extends Controller
         $test->delete();
 
         return redirect()->route('tests.index')
-            ->with('success', 'Test deleted successfully');
+            ->with('success', 'Тест успешно удален');
     }
 }

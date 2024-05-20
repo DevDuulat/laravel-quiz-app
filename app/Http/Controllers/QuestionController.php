@@ -41,6 +41,6 @@ class QuestionController extends Controller
         }
 
         return redirect()->route('tests.show', ['test' => $test_id])
-            ->with('success', 'Questions created successfully.');
+            ->with('success', 'Вопросы созданы успешно.');
     }
 }

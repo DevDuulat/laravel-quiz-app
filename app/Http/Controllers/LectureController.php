@@ -64,7 +64,7 @@ class LectureController extends Controller
         Lecture::create($requestData);
 
         return redirect()->route('lectures.index')
-            ->with('success', 'Lecture created successfully.');
+            ->with('success', 'Лекция успешно создана.');
     }
 
 
@@ -109,7 +109,7 @@ class LectureController extends Controller
         $lecture->save();
 
         return redirect()->route('lectures.index')
-            ->with('success', 'Lecture updated successfully.');
+            ->with('success', 'Лекция успешно обновлена.');
     }
 
 

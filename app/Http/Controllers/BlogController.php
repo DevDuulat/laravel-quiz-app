@@ -52,7 +52,7 @@ class BlogController extends Controller
         Blog::create($requestData);
 
         return redirect()->route('blogs.index')
-            ->with('success', 'Blog created successfully.');
+            ->with('success', 'Блог успешно создан.');
     }
 
 
@@ -90,7 +90,7 @@ class BlogController extends Controller
         $blog->save();
 
         return redirect()->route('blogs.index')
-            ->with('success', 'Blog updated successfully.');
+            ->with('success', 'Блог успешно обновлен.');
     }
 
     public function destroy(Blog $blog)
@@ -98,6 +98,6 @@ class BlogController extends Controller
         $blog->delete();
 
         return redirect()->route('blogs.index')
-            ->with('success', 'Blog deleted successfully.');
+            ->with('success', 'Блог успешно удален.');
     }
 }

@@ -28,7 +28,7 @@
 
             <div class="col-xs-12 mb-3">
                 <div><strong>Содержание:</strong></div>
-                <div>{!! nl2br(e($blog->content)) !!}</div>
+                <div>{!! ($blog->content) !!}</div>
             </div>
         </div>
 

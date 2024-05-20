@@ -19,8 +19,9 @@
                                         <img src="{{ asset('images/logo.svg') }}" class="logo_left logo" alt="logo">
                                     </a>
                                 </li>
+                                @guest
                                 <li class="active"><a href="/">Главная</a></li>
-
+                                @endguest
                                 @auth
                                     <li><a href="{{ route('content') }}">Учебные материалы</a></li>
                                 @else
@@ -88,7 +89,7 @@
 
                                         <!-- Password -->
                                         <div class="form-group mt-4">
-                                            <x-input-label for="password" :value="__('Password')" />
+                                            <x-input-label for="password" :value="__('Пароль')" />
                                             <x-text-input id="password" class="form-control" type="password" name="password" required autocomplete="current-password" />
                                             <x-input-error :messages="$errors->get('password')" class="mt-2" />
                                         </div>
@@ -97,7 +98,7 @@
                                         <div class="form-group form-check mt-4">
                                             <input id="remember_me" type="checkbox" class="form-check-input" name="remember">
                                             <label for="remember_me" class="form-check-label">
-                                                {{ __('Remember me') }}
+                                               Запомнить меня
                                             </label>
                                         </div>
 
@@ -105,12 +106,12 @@
                                         <div class="form-group mt-4">
                                             @if (Route::has('password.request'))
                                                 <a class="d-block mb-2" href="{{ route('password.request') }}">
-                                                    {{ __('Forgot your password?') }}
+                                                   Забыли пароль?
                                                 </a>
                                             @endif
 
                                             <x-primary-button class="btn btn-primary">
-                                                {{ __('Log in') }}
+                                              Войти
                                             </x-primary-button>
                                         </div>
                                     </form>
@@ -158,7 +159,7 @@
                                         <!-- Password -->
                                         <div class="mb-3">
                                             <div class="form-group">
-                                                <x-input-label for="password" :value="__('Password')" />
+                                                <x-input-label for="password" :value="__('Пароль')" />
                                                 <x-text-input id="password" class="form-control" type="password" name="password" required autocomplete="new-password" />
                                                 <x-input-error :messages="$errors->get('password')" class="mt-2" />
                                             </div>
@@ -167,7 +168,7 @@
                                         <!-- Confirm Password -->
                                         <div class="mb-3">
                                             <div class="form-group">
-                                                <x-input-label for="password_confirmation" :value="__('Confirm Password')" />
+                                                <x-input-label for="password_confirmation" :value="__('Повторите пароль')" />
                                                 <x-text-input id="password_confirmation" class="form-control" type="password" name="password_confirmation" required autocomplete="new-password" />
                                                 <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
                                             </div>
@@ -176,14 +177,14 @@
                                         <!-- Already Registered -->
                                         <div class="form-group">
                                             <a class="underline text-sm text-gray-600 hover:text-gray-900" href="{{ route('login') }}">
-                                                {{ __('Already registered?') }}
+                                                {{ __('Уже зарегистрированы?') }}
                                             </a>
                                         </div>
 
                                         <!-- Register Button -->
                                         <div class="text-center">
                                             <x-primary-button class="btn btn-primary">
-                                                {{ __('Register') }}
+                                              Регистрация
                                             </x-primary-button>
                                         </div>
                                     </form>

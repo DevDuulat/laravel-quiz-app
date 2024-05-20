@@ -46,7 +46,7 @@ class UserController extends Controller
         $user->assignRole($request->input('roles'));
 
         return redirect()->route('users.index')
-            ->with('success','User created successfully');
+            ->with('success','Пользователь создан успешно');
     }
 
     public function show($id)
@@ -87,7 +87,7 @@ class UserController extends Controller
         $user->assignRole($request->input('roles'));
 
         return redirect()->route('users.index')
-            ->with('success','User updated successfully');
+            ->with('success','Пользователь успешно обновлен');
     }
 
     public function destroy(User $user)
@@ -95,7 +95,7 @@ class UserController extends Controller
         $user->delete();
 
         return redirect()->route('users.index')
-            ->with('success', 'Lecture deleted successfully');
+            ->with('success', 'Лекция успешно удалена');
     }
 
 }

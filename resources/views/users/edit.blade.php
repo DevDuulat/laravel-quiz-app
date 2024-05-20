@@ -7,7 +7,7 @@
             <div class="pull-left">
                 <h2>Редактировать пользователя
                     <div class="float-end">
-                        <a class="btn btn-primary" href="{{ route('users.index') }}"> Back</a>
+                        <a class="btn btn-primary" href="{{ route('users.index') }}"> Назад</a>
                     </div>
                 </h2>
             </div>
