@@ -8,6 +8,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\QuestionController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\TestController;
+use App\Http\Controllers\TestInteractive;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -43,7 +44,9 @@ Route::resource('blogs', BlogController::class);
 Route::resource('tests', TestController::class);
 Route::resource('questions', QuestionController::class);
 Route::get('/tests/{test}/questions/create', [QuestionController::class, 'create'])->name('questions.create');
-Route::post('/tests/{test}', [QuestionController::class, 'store'])->name('questions.store');
+Route::post('/tests/{test}/questions', [QuestionController::class, 'store'])->name('questions.store');
+Route::get('/tests/{test}/test-interactive/create', [TestInteractive::class, 'create'])->name('test-interactive.create');
+Route::post('/tests/{test}/test-interactive', [TestInteractive::class, 'store'])->name('test-interactive.store');
 Route::get('about-us',[PageController::class, 'about'])->name('about');
 Route::get('contact',[PageController::class, 'contact'])->name('contact');
 Route::get('blog',[PageController::class, 'BlogUser'])->name('blog-user');
@@ -51,5 +54,6 @@ Route::get('blog-detail/{blog}', [PageController::class, 'BlogDetail'])->name('b
 Route::get('/content', [ContentController::class, 'index'])->name('content');
 Route::get('/content/lecture/{lecture}', [ContentController::class, 'showLecture'])->name('lecture.details');
 Route::get('/content/test/{test}', [ContentController::class, 'testing'])->name('test.details');
+Route::get('/content/test-interactive/{test}', [ContentController::class, 'testInteractive'])->name('test.test-interactive');
 
 require __DIR__.'/auth.php';

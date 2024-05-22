@@ -26,7 +26,7 @@
         <tr>
             <th width="50px">Название</th>
             <th>Описание</th>
-            <th width="530px">Действия</th>
+            <th width="830px">Действия</th>
         </tr>
         @foreach ($tests as $test)
             <tr>
@@ -34,6 +34,8 @@
                 <td>{!! Str::limit($test->description, 250)  !!}</td>
                 <td>
                     <form action="{{ route('tests.destroy',$test->id) }}" method="POST">
+                        <a class="btn btn-info" href="{{ route('test-interactive.create',$test->id) }}">Интерактивные  вопросы</a>
+
                         <a class="btn btn-info" href="{{ route('questions.create',$test->id) }}">Создать вопросы</a>
                         <a class="btn btn-info" href="{{ route('tests.show',$test->id) }}">Просмотр</a>
                         @can('test-edit')

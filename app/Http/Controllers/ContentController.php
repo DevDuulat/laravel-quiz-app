@@ -30,7 +30,18 @@ class ContentController extends Controller
     public function testing($id)
     {
         $test = Test::findOrFail($id);
-        $questions = $test->questions; // Получаем все вопросы для данного теста
+        $questions = $test->questions;
+
+
         return view('content.test', compact('test', 'questions'));
     }
+    public function testInteractive($id)
+    {
+        $test = Test::findOrFail($id);
+        $testInteractive = $test->testInteractives;
+
+        return view('content.test-interactive', compact('test',  'testInteractive'));
+    }
+
+
 }

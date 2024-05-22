@@ -17,4 +17,8 @@ class Test extends Model
     {
         return $this->hasMany(Question::class);
     }
+    public function testInteractives()
+    {
+        return $this->hasMany(TestInteractive::class);
+    }
 }

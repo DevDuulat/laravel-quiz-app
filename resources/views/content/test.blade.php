@@ -5,9 +5,21 @@
     <div class="test_boxs">
         <div class="container pt--130">
             <div class="row  ">
-                <!-- start Quiz button -->
-                <div class="start_btn col-12 d-flex justify-content-center"><button class=" start_btn btn btn-primary ">Пройти
-                        тест</button></div>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="start_btn d-flex justify-content-center">
+                                <button class="start_btn btn btn-primary">Пройти тест</button>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="start_btn d-flex justify-content-center">
+                                <a class="start_btn btn btn-primary" href="{{ route('test.test-interactive', ['test' => $test->id]) }}">Пройти интерактивный тест</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
 
                 <!-- Info Box -->
                 <div class="info_box ">
