@@ -24,7 +24,11 @@ class ContentController extends Controller
     public function showLecture($id)
     {
         $lecture = Lecture::findOrFail($id);
-        return view('content.course-details', compact('lecture'));
+
+        $previousLecture = Lecture::where('id', '<', $lecture->id)->orderBy('id', 'desc')->first();
+        $nextLecture = Lecture::where('id', '>', $lecture->id)->orderBy('id', 'asc')->first();
+
+        return view('content.course-details', compact('lecture', 'previousLecture', 'nextLecture'));
     }
 
     public function testing($id)

@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\ContentController;
+use App\Http\Controllers\LectureAccessController;
 use App\Http\Controllers\LectureController;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\ProfileController;
@@ -30,7 +31,7 @@ Route::get('/dashboard', [ProfileController::class, 'dashboard'])
     ->middleware(['auth', 'verified'])
     ->name('dashboard');
 
-Route::middleware('auth')->group(function () {
+Route::group(['middleware' => 'auth'], function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
@@ -55,5 +56,6 @@ Route::get('/content', [ContentController::class, 'index'])->name('content');
 Route::get('/content/lecture/{lecture}', [ContentController::class, 'showLecture'])->name('lecture.details');
 Route::get('/content/test/{test}', [ContentController::class, 'testing'])->name('test.details');
 Route::get('/content/test-interactive/{test}', [ContentController::class, 'testInteractive'])->name('test.test-interactive');
+Route::post('/lecture-access', [LectureAccessController::class, 'store']);
 
 require __DIR__.'/auth.php';

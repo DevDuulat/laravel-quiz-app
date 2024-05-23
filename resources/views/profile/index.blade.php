@@ -103,20 +103,16 @@
         <div class="row d-flex justify-content-center pb--120">
             <!-- <h3 class="pb--80">Статистика пользователя</h3> -->
 
-            <div class="col-sm-8 col-12 pb--30 ">
-
+            <div class="col-sm-8 col-12 pb--30">
                 <div class="col-8">
                     <h4 class="pb--30">Прогресс прохождения курса</h4>
                 </div>
 
-                <div class="progress col-10" role="progressbar" aria-label="Example with label" aria-valuenow="25"
+                <div class="progress col-10" role="progressbar" aria-label="Example with label" aria-valuenow="{{ $progress }}"
                      aria-valuemin="0" aria-valuemax="100">
-                    <div class="progress-bar" style="width: 45%">45%</div>
+                    <div class="progress-bar" style="width: {{ $progress }}%">{{ round($progress, 2) }}%</div>
                 </div>
-
-
             </div>
-
             <div class="col-sm-4 col-12">
                 <div class=" mb-5">
                     <h4>Пройденный материал</h4>

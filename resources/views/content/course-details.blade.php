@@ -35,11 +35,21 @@
                             <p>{!! $lecture->text  !!} </p>
 
                             <div class="col-12">
-                                <button type="button" class="btn btn-light btn_blog">Далее</button>
-                                <button type="button" class="btn btn-light btn_blog">Назад</button>
-                                <a href="{{ route('dashboard') }}" class="btn btn-light btn_blog">На главную</a>
-                            </div>
+                                @if($previousLecture)
+                                    <a href="{{ route('lecture.details', $previousLecture->id) }}" class="btn btn-light btn_blog">Назад</a>
+                                @endif
 
+                                @if($nextLecture)
+                                    <a href="{{ route('lecture.details', $nextLecture->id) }}" class="btn btn-light btn_blog">Далее</a>
+                                @endif
+                                <a href="{{ route('content') }}" class="btn btn-light btn_blog">На главную</a>
+                            </div>
+                            <div class="col-12">
+                                <form id="lectureAccessForm">
+                                    <input type="hidden" name="lecture_id" value="{{ $lecture->id }}">
+                                    <button type="submit" class="btn btn-light btn_blog">Отметить как прочитано</button>
+                                </form>
+                            </div>
                             <!-- Добавьте код для отображения кнопок "Далее", "Назад" и ссылки на главную страницу -->
                         </div>
                     </div>
@@ -47,5 +57,29 @@
             </div>
         </div>
     </div>
+    <script src="{{ asset('js/vendor/jquery-2.2.4.min.js') }}"></script>
+    <script>
+        $(document).ready(function() {
+            $('#lectureAccessForm').on('submit', function(e) {
+                e.preventDefault();
+
+                $.ajax({
+                    url: '/lecture-access',
+                    method: 'POST',
+                    data: $(this).serialize(),
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    },
+                    success: function(response) {
+                        alert('Лекция успешно прочитано');
+                    },
+                    error: function(response) {
+                        alert('Уже прочитан.');
+                    }
+                });
+            });
+        });
+    </script>
+
     <!-- course area end -->
 @endsection

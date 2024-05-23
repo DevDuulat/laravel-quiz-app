@@ -28,7 +28,7 @@
                                     <li><a href="{{route('about')}}">О проекте</a></li>
                                     <li><a href="{{route('contact')}}">Контакты</a></li>
                                 @endauth
-                                <li><a href="{{route('blog-user')}}">Блок</a></li>
+                                <li><a href="{{route('blog-user')}}">Блог</a></li>
 
                             </ul>
                         </nav>

@@ -16,7 +16,7 @@
     <div class="crumbs-area">
         <div class="container">
             <div class="crumb-content">
-                <h4 class="crumb-title">Блок и Новости</h4>
+                <h4 class="crumb-title">Блог и Новости</h4>
             </div>
         </div>
     </div>

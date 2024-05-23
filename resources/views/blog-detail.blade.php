@@ -38,9 +38,16 @@
                             <h3 class="mb-4"><a href="#">{{ $blog->title }}</a></h3>
                             <p>{{ $blog->description }}</p>
                             <!-- Ваш контент блога -->
-                            <p>{{ $blog->content }}</p>
+                            <p>{!! $blog->content  !!}</p>
                             <!-- Добавьте кнопку "Читать далее" -->
                             <!-- Здесь может быть ваша кнопка, которая будет вести на другую страницу с полным текстом блога -->
+
+                            <div class="col-12">
+                                <button type="button" class="btn btn-light  btn_blog">Далее</button>
+                                <button type="button" class="btn btn-light  btn_blog">Назад</button>
+                                <a href="/" class="btn btn-light  btn_blog">На главную</a>
+                            </div>
+
                         </div>
                     </div>
                     <!-- comments area end -->
@@ -79,7 +86,7 @@
                 <!-- sidebar end -->
             </div>
         </div>
-    </div>
+
     <!-- course area end -->
 
 @endsection
