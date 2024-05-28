@@ -34,9 +34,13 @@ class ProfileController extends Controller
 
     public function edit(Request $request): View
     {
-
+        $user = Auth::user();
+        $completedLectures = LectureAccess::where('user_id', $user->id)->count();
+        $totalLectures = Lecture::count();
+        $progress = $totalLectures > 0 ? ($completedLectures / $totalLectures) * 100 : 0;
         return view('profile.index', [
             'user' => $request->user(),
+            'progress' =>$progress
         ]);
     }
 

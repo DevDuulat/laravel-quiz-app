@@ -43,8 +43,6 @@
                             <!-- Здесь может быть ваша кнопка, которая будет вести на другую страницу с полным текстом блога -->
 
                             <div class="col-12">
-                                <button type="button" class="btn btn-light  btn_blog">Далее</button>
-                                <button type="button" class="btn btn-light  btn_blog">Назад</button>
                                 <a href="/" class="btn btn-light  btn_blog">На главную</a>
                             </div>
 
@@ -115,9 +113,6 @@
                                 <div class="col-md-6">
                                     <input type="text" name="name" placeholder="Введите ваше имя" required>
                                 </div>
-                                <div class="col-md-6">
-                                    <input type="email" name="email" placeholder="Введите ваш Email" required>
-                                </div>
                             </div>
                             <textarea name="content" id="msg" placeholder="Оставьте ваш комментарий тут" required></textarea>
                             <input type="hidden" name="blog_id" value="{{ $blog->id }}">
@@ -146,7 +141,7 @@
                                             <img src="../assets/images/course/default-cover.jpg" alt="Default Cover">
                                         @endif
                                         <div class="fix">
-                                            <p><a href="#">{{ $randomBlog->title }}</a></p>
+                                            <p><a href="{{ route('blog.detail', ['blog' => $randomBlog->id]) }}">{{ $randomBlog->title }}</a></p>
                                             <span><i class="fa fa-clock-o"></i> {{ $randomBlog->publication_date }}</span>
                                         </div>
                                     </div>
@@ -163,6 +158,7 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', function () {
+
             document.querySelectorAll('.edit-comment').forEach(button => {
                 button.addEventListener('click', function () {
                     const id = this.getAttribute('data-id');

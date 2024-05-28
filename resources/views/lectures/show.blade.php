@@ -35,7 +35,7 @@
         </div>
         @if ($lecture->image_url)
             <div class="col-xs-12 mb-3">
-                <img src="{{ asset('storage/' . $lecture->image_url) }}" alt="Обложка" class="img-fluid">
+                <img src="{{ asset('storage/' . $lecture->image_url) }}" alt="Обложка" class="img-fluid image-card-block">
             </div>
         @endif
 

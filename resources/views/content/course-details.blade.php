@@ -2,6 +2,25 @@
 
 @section('content')
     <!-- crumbs area start -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0-beta1/jquery.min.js"></script>
+    <script>
+        $(function () {
+            var docHeight = $(document).height();
+            var windowHeight = $(window).height(); // Добавлено получение высоты окна браузера
+
+            $(window).on('scroll', function (e) {
+                var scrollTop = $(window).scrollTop();
+                var scrollPercentage = (scrollTop * 100) / (docHeight - windowHeight); // Изменено вычисление прогресса
+
+                $('.nav-add_len').css('width', scrollPercentage + '%');
+            });
+        });
+    </script>
+    <!-- Прогресс -->
+    <div class="nav_len ">
+        <div class="nav-add_len"></div>
+    </div>
+    <!-- Прогресс end-->
     <div class="crumbs-area">
         <div class="container">
             <div class="crumb-content">

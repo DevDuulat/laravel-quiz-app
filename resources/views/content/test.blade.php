@@ -126,7 +126,7 @@
         quiz_box.classList.add('activeQuiz') //show quiz box
         showQuetions(0) //calling showQestions function
         queCounter(1) //passing 1 parameter to queCounter
-        startTimer(15) //calling startTimer function
+        startTimer({{$test->time_to_answer}}) //calling startTimer function
         startTimerLine(0) //calling startTimerLine function
     }
 
@@ -271,9 +271,9 @@
             // if user scored more than 3
             //creating a new span tag and passing the user score number and total question number
             let scoreTag =
-                '<span>and congrats! 🎉, You got <p>' +
+                '<span>и поздравляю! 🎉 У тебя есть <p>' +
                 userScore +
-                '</p> out of <p>' +
+                '</p> из <p>' +
                 questions.length +
                 '</p></span>'
             scoreText.innerHTML = scoreTag //adding new span tag inside score_Text
@@ -289,9 +289,9 @@
         } else {
             // if user scored less than 1
             let scoreTag =
-                '<span>and sorry 😐, You got only <p>' +
+                '<span>Извините 😐, вы получили только <p>' +
                 userScore +
-                '</p> out of <p>' +
+                '</p> из <p>' +
                 questions.length +
                 '</p></span>'
             scoreText.innerHTML = scoreTag

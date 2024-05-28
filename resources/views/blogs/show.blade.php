@@ -22,7 +22,7 @@
             </div>
             @if ($blog->cover)
                 <div class="col-xs-12 mb-3">
-                    <img src="{{ asset('storage/' . $blog->cover) }}" alt="Обложка" class="img-fluid">
+                    <img src="{{ asset('storage/' . $blog->cover) }}" alt="Обложка" class="img-fluid image-card-block">
                 </div>
             @endif
 

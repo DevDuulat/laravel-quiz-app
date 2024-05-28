@@ -14,7 +14,7 @@
         <div class="row ptb--180 box-card-lesson">
 
             <div class="col-12">
-                <h3 class="pb-5">Интерактивный тренажер</h3>
+                <h3 class="pb-5">Тренажер викторина</h3>
                 <div class="wrapper__box">
                     @foreach($testsWithInteractiveQuestions as $test)
                         <div class="test__content-box">
@@ -26,7 +26,7 @@
             </div>
 
             <div class="col-12 pt--100">
-                <h3 class="pb-5">Тренажер викторина</h3>
+                <h3 class="pb-5">Интерактивный тренажер</h3>
                 <div class="wrapper__box">
                     @foreach($testsWithQuizQuestions as $test)
                         <div class="test__content-box">

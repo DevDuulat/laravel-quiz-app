@@ -2913,3 +2913,35 @@ TODO
     color: #000;
 }
 
+/* прогресс на лекции и статьи  */
+.nav_len {
+    width: 100%;
+    height: 15px;
+    border-bottom: 3px solid #1e8183;
+    position: fixed;
+    top: 90px;
+    left: 0;
+    z-index: 10;
+    background: white;
+    transition: all 1s linear;
+}
+
+.nav-add_len {
+    width: 0%;
+    height: 100%;
+    background: #1e8183;
+    transition: all 1s linear;
+}
+
+@media (max-width: 992px) {
+    .nav_len {
+        top: 138px;
+    }
+}
+
+@media (max-width: 540px) {
+    .nav_len {
+        top: 165px;
+    }
+}
+/* прогресс на лекции и статьи  end */

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AuthenticatedRedirectController;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\ContentController;

@@ -3,7 +3,7 @@
 @section('content')
 
     <div class="container">
-        <h1 class="text-center">Тест на тему "Шотландия. Шотланский язык"</h1>
+        <h1 class="text-center">Тест"</h1>
         <p class="text-center">Данный тест направлен на проверку знаний, полученных на предыдущих страницах. Ваша задача - вписать ответ в окно</p>
         <p class="text-center">Удачи в прохождении теста!</p>
 
