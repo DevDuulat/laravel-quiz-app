@@ -70,8 +70,7 @@ class ProfileController extends Controller
         $user->avatar = $avatarPath;
         $user->save();
 
-        return redirect()->route('profile.edit')->with('status', 'Фотография профиля успешно обновлена.');
-    }
+        return redirect()->back()->with('status', 'Фотография профиля успешно обновлена.');    }
 
     /**
      * Delete the user's account.

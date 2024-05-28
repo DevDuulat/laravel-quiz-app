@@ -20,10 +20,6 @@
                     <div class="course-details">
                         <div class="cs-thumb mb-5">
                             <img src="{{ asset('storage/' . $lecture->image_url) }}" alt="{{ $lecture->image_url }}">
-
-
-                            <!-- Добавьте код для отображения других данных лекции, таких как метаданные -->
-
                         </div>
                         <div class="cs-content">
                             <div class="col-12 d-sm-flex d-block">
@@ -42,7 +38,7 @@
                                 @if($nextLecture)
                                     <a href="{{ route('lecture.details', $nextLecture->id) }}" class="btn btn-light btn_blog">Далее</a>
                                 @endif
-                                <a href="{{ route('content') }}" class="btn btn-light btn_blog">На главную</a>
+                                <a href="{{ route('user-lectures') }}" class="btn btn-light btn_blog">На главную</a>
                             </div>
                             <div class="col-12">
                                 <form id="lectureAccessForm">

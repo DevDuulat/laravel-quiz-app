@@ -5,13 +5,16 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class TestInteractive extends Model
+class InteractiveSimulator extends Model
 {
     use HasFactory;
-
-    protected $table = 'new_test';
+    protected $table = 'interactive_simulators';
     protected $fillable = [
-        'test_id', 'question_text', 'correct_answer'
+        'question', 'answer', 'options', 'test_id'
+    ];
+
+    protected $casts = [
+        'options' => 'array'
     ];
 
     public function test()

@@ -24,7 +24,7 @@
         <p>{{ $test->description }}</p>
 
         <div class="questions">
-            @foreach ($test->questions as $question)
+            @foreach ($test->interactiveSimulator as $question)
                 <div class="question">
                     <h3>{{ $question->question }}</h3>
                     <p>Ответ: {{ $question->answer }}</p>

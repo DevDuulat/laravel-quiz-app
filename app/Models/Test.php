@@ -13,12 +13,12 @@ class Test extends Model
         'name', 'description', 'time_to_answer'
     ];
 
-    public function questions()
+    public function interactiveSimulator()
     {
-        return $this->hasMany(Question::class);
+        return $this->hasMany(InteractiveSimulator::class);
     }
-    public function testInteractives()
+    public function quizSimulator()
     {
-        return $this->hasMany(TestInteractive::class);
+        return $this->hasMany(SimulatorQuiz::class);
     }
 }

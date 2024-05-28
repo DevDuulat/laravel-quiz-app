@@ -7,16 +7,12 @@
             <div class="row  ">
                 <div class="container">
                     <div class="row">
-                        <div class="col-md-6">
+                        <div class="col-md-12">
                             <div class="start_btn d-flex justify-content-center">
                                 <button class="start_btn btn btn-primary">Пройти тест</button>
                             </div>
                         </div>
-                        <div class="col-md-6">
-                            <div class="start_btn d-flex justify-content-center">
-                                <a class="start_btn btn btn-primary" href="{{ route('test.test-interactive', ['test' => $test->id]) }}">Пройти интерактивный тест</a>
-                            </div>
-                        </div>
+
                     </div>
                 </div>
 

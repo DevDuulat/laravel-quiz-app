@@ -7,7 +7,7 @@
         <p class="text-center">Данный тест направлен на проверку знаний, полученных на предыдущих страницах. Ваша задача - вписать ответ в окно</p>
         <p class="text-center">Удачи в прохождении теста!</p>
 
-        @foreach($testInteractive as $question)
+        @foreach($questions as $question)
             <div class="card mt-4">
                 <div class="card-body">
                     <h5 class="card-title">Вопрос {{ $question->id }}</h5>

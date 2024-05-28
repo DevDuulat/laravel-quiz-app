@@ -25,7 +25,7 @@ class TestInteractive extends Controller
             'correct_answer' => 'required|string',
         ]);
         $test = Test::findOrFail($test_id);
-        $question = new \App\Models\TestInteractive([
+        $question = new \App\Models\SimulatorQuiz([
             'question_text' => $request->input('question_text'),
             'correct_answer' => $request->input('correct_answer'),
         ]);

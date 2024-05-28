@@ -23,7 +23,8 @@
                                 <li class="active"><a href="/">Главная</a></li>
                                 @endguest
                                 @auth
-                                    <li><a href="{{ route('content') }}">Учебные материалы</a></li>
+                                    <li><a href="{{ route('user-lectures') }}">Лекции</a></li>
+                                    <li><a href="{{ route('user-tests') }}">Тренажеры</a></li>
                                 @else
                                     <li><a href="{{route('about')}}">О проекте</a></li>
                                     <li><a href="{{route('contact')}}">Контакты</a></li>

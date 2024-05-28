@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Question;
+use App\Models\InteractiveSimulator;
 use App\Models\Test;
 use Illuminate\Http\Request;
 
@@ -31,13 +31,13 @@ class QuestionController extends Controller
         foreach ($request->questions as $key => $questionData) {
             $options = json_decode($request->options[$key]['options'], true);
 
-            $question = new Question([
+            $question = new InteractiveSimulator([
                 'question' => $questionData['question'],
                 'answer' => $request->answers[$key]['answer'],
                 'options' => $options,
             ]);
 
-            $test->questions()->save($question);
+            $test->interactiveSimulator()->save($question);
         }
 
         return redirect()->route('tests.show', ['test' => $test_id])

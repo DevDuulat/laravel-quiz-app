@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\InteractiveSimulator;
 use App\Models\Lecture;
+use App\Models\SimulatorQuiz;
 use App\Models\Test;
 use Illuminate\Http\Request;
 
@@ -13,13 +15,28 @@ class ContentController extends Controller
         $this->middleware('auth');
     }
 
-    public function index()
+    public function UserLectures()
     {
         $lectures = Lecture::all();
+
+        return view('content.lectures', compact('lectures'));
+    }
+
+    public function UserTests()
+    {
         $tests = Test::all();
 
-        return view('content.index', compact('lectures', 'tests'));
+        $testsWithInteractiveQuestions = $tests->filter(function ($test) {
+            return $test->interactiveSimulator()->exists();
+        });
+
+        $testsWithQuizQuestions = $tests->filter(function ($test) {
+            return $test->quizSimulator()->exists();
+        });
+
+        return view('content.tests', compact('testsWithInteractiveQuestions', 'testsWithQuizQuestions'));
     }
+
 
     public function showLecture($id)
     {
@@ -39,12 +56,20 @@ class ContentController extends Controller
 
         return view('content.test', compact('test', 'questions'));
     }
-    public function testInteractive($id)
+    public function SimulatorQuizShow($id)
     {
         $test = Test::findOrFail($id);
-        $testInteractive = $test->testInteractives;
+        $questions = $test->quizSimulator;
+        return view('content.test-interactive', compact('test',  'questions'));
+    }
 
-        return view('content.test-interactive', compact('test',  'testInteractive'));
+
+    public function InteractiveSimulatorShow($id)
+    {
+        $test = Test::with('interactiveSimulator')->findOrFail($id);
+        $questions = $test->interactiveSimulator;
+
+        return view('content.test', compact('test', 'questions'));
     }
 
 

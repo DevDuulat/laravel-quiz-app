@@ -37,9 +37,9 @@ let questions = [
 		question: 'What does SQL stand for?',
 		answer: 'Structured Query Language',
 		options: [
-			'Stylish Question Language',
+			'Stylish InteractiveSimulator Language',
 			'Stylesheet Query Language',
-			'Statement Question Language',
+			'Statement InteractiveSimulator Language',
 			'Structured Query Language',
 		],
 	},
@@ -57,7 +57,7 @@ let questions = [
 
 	{
 		numb: 6,
-		question: 'Your Question is Here',
+		question: 'Your InteractiveSimulator is Here',
 
 		options: ['Option 1', 'option 2', 'option 3', 'option 4'],
 	},
