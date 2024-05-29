@@ -14,7 +14,7 @@ class PageController extends Controller
     }
     public function BlogUser()
     {
-        $blogs = Blog::all();
+        $blogs = Blog::withCount('comments')->get();
         return view('blog', compact('blogs'));
     }
     public function BlogDetail(Blog $blog)

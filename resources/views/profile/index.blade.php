@@ -124,7 +124,7 @@
                             <th scope="col">Статус </th>
                             <th scope="col">Статьи</th>
                             <th scope="col">Лекции</th>
-                            <th scope="col">Тесты</th>
+
                         </tr>
                         </thead>
                         <tbody>
@@ -132,13 +132,13 @@
                             <th scope="row">Пройдено</th>
                             <td>5</td>
                             <td>4</td>
-                            <td>2</td>
+
                         </tr>
                         <tr>
                             <th scope="row">Осталось</th>
                             <td>5</td>
                             <td>10</td>
-                            <td>8</td>
+
                         </tr>
 
                         </tbody>

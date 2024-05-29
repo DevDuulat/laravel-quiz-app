@@ -23,7 +23,7 @@ class LectureController extends Controller
 
     public function index()
     {
-        $lectures = Lecture::latest()->paginate(50);
+        $lectures = Lecture::latest()->paginate(10);
         return view('lectures.index', compact('lectures'));
     }
 

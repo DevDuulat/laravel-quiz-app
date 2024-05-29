@@ -95,31 +95,30 @@
                                     </div>
                                 </li>
                             @endforeach
-
-
                         </ul>
                     </div>
-
                     <!-- comments area end -->
-
 
                     <!-- Остальной контент блога -->
                     <!-- leave comment area start -->
                     <div class="leave-comment-area">
                         <h4 class="comment-title">Оставьте свой комментарий</h4>
-                        <form action="{{ route('comments.store') }}" method="POST">
-                            @csrf
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <input type="text" name="name" placeholder="Введите ваше имя" required>
+                        @if(auth()->check())
+                            <form action="{{ route('comments.store') }}" method="POST">
+                                @csrf
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <input type="text" name="name" value="{{ auth()->user()->name }}" placeholder="Введите ваше имя" required>
+                                    </div>
                                 </div>
-                            </div>
-                            <textarea name="content" id="msg" placeholder="Оставьте ваш комментарий тут" required></textarea>
-                            <input type="hidden" name="blog_id" value="{{ $blog->id }}">
-                            <button class="btn btn-primary btn-round" type="submit">Оставить комментарий<i class="fa fa-long-arrow-right"></i></button>
-                        </form>
+                                <textarea name="content" id="msg" placeholder="Оставьте ваш комментарий тут" required></textarea>
+                                <input type="hidden" name="blog_id" value="{{ $blog->id }}">
+                                <button class="btn btn-primary btn-round" type="submit">Оставить комментарий<i class="fa fa-long-arrow-right"></i></button>
+                            </form>
+                        @else
+                            <p>Вы должны <a data-toggle="modal" data-target="#exampleModal2" href="#">зарегистрироваться</a> или <a data-toggle="modal" data-target="#exampleModal" href="#">войти</a>, чтобы оставить комментарий.</p>
+                        @endif
                     </div>
-
                     <!-- leave comment area end -->
                 </div>
                 <!-- course details end -->
@@ -151,10 +150,10 @@
                         <!-- widget course end -->
                     </div>
                 </div>
-                </div>
                 <!-- sidebar end -->
             </div>
         </div>
+    </div>
 
     <script>
         document.addEventListener('DOMContentLoaded', function () {
@@ -174,7 +173,5 @@
             });
         });
     </script>
-
-
 
 @endsection

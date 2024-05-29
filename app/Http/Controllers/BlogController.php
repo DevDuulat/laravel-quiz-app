@@ -18,7 +18,7 @@ class BlogController extends Controller
 
     public function index()
     {
-        $blogs = Blog::all();
+        $blogs = Blog::latest()->paginate(5);
         return view('blogs.index', compact('blogs'));
     }
 

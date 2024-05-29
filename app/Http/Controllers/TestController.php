@@ -14,7 +14,7 @@ class TestController extends Controller
     }
     public function index()
     {
-        $tests = Test::latest()->paginate(50);
+        $tests = Test::latest()->paginate(10);
         return view('tests.index', compact('tests'));
     }
 

@@ -10,7 +10,7 @@
                     </div>
                 </div>
 
-                <div class="col-lg-7 offset-lg-1 d-none d-lg-block ">
+                <div class="col-lg-6 offset-lg-1 d-none d-lg-block ">
                     <div class="main-menu menu-style2">
                         <nav>
                             <ul id="m_menu_active">
@@ -36,7 +36,7 @@
                     </div>
                 </div>
 
-                <div class="col-lg-4 col-sm-4 col-8 ">
+                <div class="col-lg-6 col-sm-4 col-8 ">
                     <div class="header-bottom-right-style-2">
                         <ul>
                             @guest
@@ -49,15 +49,19 @@
                                 <li class="col-sm-5">
                                     <p class="address email-info">{{ Auth::user()->name }}  <a href="#"></a></p>
                                 </li>
+                                @role('Admin')
+                                <li>
+                                    <a class="btn btn-light btn-round" href="{{route('users.index')}}">Админ</a>
+                                </li>
+                                @endrole
                                 <li>
                                     <a class="btn btn-light btn-round" href="{{route('dashboard')}}">Кабинет</a>
                                 </li>
                                 <li>
                                     <a href="#" class="btn btn-light btn-round" id="logoutBtn">Выход</a>
                                 </li>
-
-
                             @endguest
+
                         </ul>
                     </div>
                     <!-- Button trigger modal -->
