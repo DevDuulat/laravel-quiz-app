@@ -31,15 +31,15 @@
         <div class="row">
             <div class="col-xs-12 mb-3">
                 <div class="form-group">
-                    <strong>Название:</strong>
-                    <input type="text" name="title" value="{{ $lecture->title }}" class="form-control"
-                           placeholder="Название">
+                    <strong>Изображение обложки:</strong>
+                    <input type="file" name="image_url" class="form-control">
                 </div>
             </div>
             <div class="col-xs-12 mb-3">
                 <div class="form-group">
-                    <strong>Текст:</strong>
-                    <textarea class="form-control" name="text" id="editor" placeholder="Текст">{{ $lecture->text }}</textarea>
+                    <strong>Название:</strong>
+                    <input type="text" name="title" value="{{ $lecture->title }}" class="form-control"
+                           placeholder="Название">
                 </div>
             </div>
             <div class="col-xs-12 mb-3">
@@ -50,11 +50,10 @@
             </div>
             <div class="col-xs-12 mb-3">
                 <div class="form-group">
-                    <strong>Изображение обложки:</strong>
-                    <input type="file" name="image_url" class="form-control">
+                    <strong>Текст:</strong>
+                    <textarea class="form-control" name="text" id="editor" placeholder="Текст">{{ $lecture->text }}</textarea>
                 </div>
             </div>
-
             <div class="col-xs-12 mb-3 text-center">
                 <button type="submit" class="btn btn-primary">Отправить</button>
             </div>

@@ -11,7 +11,7 @@
     <div class="row">
         <div class="col-lg-12 margin-tb mb-4">
             <div class="pull-left">
-                <h2>Создать Вопрос
+                <h2>Тест
                     <div class="float-end">
                         <a class="btn btn-primary" href="{{ route('tests.index') }}"> Назад</a>
                     </div>

@@ -113,38 +113,7 @@
                     <div class="progress-bar" style="width: {{ $progress }}%">{{ round($progress, 2) }}%</div>
                 </div>
             </div>
-            <div class="col-sm-4 col-12">
-                <div class=" mb-5">
-                    <h4>Пройденный материал</h4>
-                </div>
-                <div class="col-6">
-                    <table class="table text-dark table-bordered">
-                        <thead>
-                        <tr>
-                            <th scope="col">Статус </th>
-                            <th scope="col">Статьи</th>
-                            <th scope="col">Лекции</th>
 
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <tr>
-                            <th scope="row">Пройдено</th>
-                            <td>5</td>
-                            <td>4</td>
-
-                        </tr>
-                        <tr>
-                            <th scope="row">Осталось</th>
-                            <td>5</td>
-                            <td>10</td>
-
-                        </tr>
-
-                        </tbody>
-                    </table>
-                </div>
-            </div>
 
         </div>
     </div>
