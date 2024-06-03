@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\InteractiveSimulator;
+use App\Models\SimulatorQuiz;
 use App\Models\Test;
 use Illuminate\Http\Request;
 
@@ -42,7 +44,11 @@ class TestController extends Controller
 
     public function show(Test $test)
     {
-        return view('tests.show', compact('test'));
+        $simulatorQuizCount = SimulatorQuiz::where('test_id', $test->id)->count();
+
+        $interactiveSimulatorCount = InteractiveSimulator::where('test_id', $test->id)->count();
+
+        return view('tests.show', compact('test', 'simulatorQuizCount', 'interactiveSimulatorCount'));
     }
 
     public function edit(Test $test)

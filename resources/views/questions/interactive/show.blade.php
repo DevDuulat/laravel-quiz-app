@@ -11,7 +11,7 @@
     <div class="row">
         <div class="col-lg-12 margin-tb mb-4">
             <div class="pull-left">
-                <h2>Тест
+                <h2>Интерактивный тренажер
                     <div class="float-end">
                         <a class="btn btn-primary" href="{{ route('tests.index') }}"> Назад</a>
                     </div>
@@ -32,7 +32,6 @@
                             @endforeach
                         </ul>
                     @endif
-
                     <a href="{{ route('test-interactive.edit', ['test' => $test->id, 'question' => $question->id]) }}" class="btn btn-primary">Редактировать</a>
                     <form action="{{ route('test-interactive.destroy', ['test' => $test->id, 'question' => $question->id]) }}" method="POST" style="display:inline;">
                         @csrf

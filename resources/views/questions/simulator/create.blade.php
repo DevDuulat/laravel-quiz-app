@@ -13,23 +13,40 @@
         </div>
     </div>
     <div class="container">
-        <form action="{{ route('test-interactive.store', ['test' => $test->id]) }}" method="POST" id="question-form">
+        @if ($errors->any())
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
+        <form action="{{ route('simulator-quiz.store', ['test' => $test->id]) }}" method="POST" id="question-form">
             @csrf
             <div id="question-blocks">
                 <div class="question-block">
                     <div class="form-group">
                         <label for="questions[0][question_text]">Вопрос</label>
-                        <input type="text" name="questions[0][question_text]" class="form-control">
+                        <input type="text" name="questions[0][question_text]" class="form-control @error('questions.0.question_text') is-invalid @enderror" value="{{ old('questions.0.question_text') }}">
+                        @error('questions.0.question_text')
+                        <div class="invalid-feedback">{{ $message }}</div>
+                        @enderror
                     </div>
                     <div class="form-group">
                         <label for="questions[0][correct_answer]">Правильный ответ</label>
-                        <input type="text" name="questions[0][correct_answer]" class="form-control">
+                        <input type="text" name="questions[0][correct_answer]" class="form-control @error('questions.0.correct_answer') is-invalid @enderror" value="{{ old('questions.0.correct_answer') }}">
+                        @error('questions.0.correct_answer')
+                        <div class="invalid-feedback">{{ $message }}</div>
+                        @enderror
                     </div>
                 </div>
             </div>
             <button type="button" class="btn btn-success mt-3" onclick="addQuestionBlock()">Добавить Вопрос (+)</button>
             <button type="submit" class="btn btn-primary mt-3">Создать Вопрос</button>
         </form>
+
+
 
         <script>
             let questionCount = 1;
@@ -62,23 +79,27 @@
                 answerFormGroup.appendChild(answerLabel);
                 answerFormGroup.appendChild(answerInput);
 
+                const removeButton = document.createElement('button');
+                removeButton.type = 'button';
+                removeButton.classList.add('btn', 'btn-danger', 'remove-question', 'mt-2');
+                removeButton.textContent = 'Удалить Вопрос (-)';
+                removeButton.onclick = () => removeQuestionBlock(removeButton);
+
                 newBlock.appendChild(questionFormGroup);
                 newBlock.appendChild(answerFormGroup);
+                newBlock.appendChild(removeButton);
 
                 questionBlocks.appendChild(newBlock);
 
                 questionCount++;
             }
+
+            function removeQuestionBlock(button) {
+                const questionBlocks = document.getElementById('question-blocks');
+                if (questionBlocks.childElementCount > 1) {
+                    button.parentElement.remove();
+                }
+            }
         </script>
-
-
-
     </div>
-
-{{--    <script>--}}
-{{--        function addQuestionBlock() {--}}
-{{--            var questionBlock = document.querySelector('.question-block').cloneNode(true);--}}
-{{--            document.getElementById('question-blocks').appendChild(questionBlock);--}}
-{{--        }--}}
-{{--    </script>--}}
 @endsection

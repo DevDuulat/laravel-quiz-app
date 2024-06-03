@@ -17,6 +17,10 @@ return new class extends Migration
             $table->string('answer');
             $table->json('options')->nullable();
             $table->unsignedBigInteger('test_id');
+            $table->foreign('test_id')
+                ->references('id')
+                ->on('tests')
+                ->onDelete('cascade');
             $table->timestamps();
         });
     }
@@ -26,6 +30,11 @@ return new class extends Migration
      */
     public function down(): void
     {
+
+
+        Schema::table('interactive_simulators', function (Blueprint $table) {
+            $table->dropForeign(['test_id']);
+        });
         Schema::dropIfExists('interactive_simulators');
     }
 };

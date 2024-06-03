@@ -1,6 +1,5 @@
 <?php
 
-use App\Http\Controllers\AuthenticatedRedirectController;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\ContentController;
@@ -76,10 +75,21 @@ Route::resource('questions', QuestionController::class);
 
 // Nested Routes for Test Interactions
 Route::prefix('tests/{test}')->group(function () {
-    Route::get('test-interactive/create', [InteractiveSimulatorController::class, 'create'])->name('questions.create');
-    Route::post('test-interactive', [InteractiveSimulatorController::class, 'store'])->name('questions.store');
-    Route::get('simulator-quiz/create', [SimulatorQuizController::class, 'create'])->name('test-interactive.create');
-    Route::post('simulator-quiz', [SimulatorQuizController::class, 'store'])->name('test-interactive.store');
+    Route::get('test-interactive/create', [InteractiveSimulatorController::class, 'create'])->name('test-interactive.create');
+    Route::post('test-interactive', [InteractiveSimulatorController::class, 'store'])->name('test-interactive.store');
+    Route::get('test-interactive/{question}/edit', [InteractiveSimulatorController::class,'edit'])->name('test-interactive.edit');
+    Route::put('test-interactive/{question}', [InteractiveSimulatorController::class, 'update'])->name('test-interactive.update');
+    Route::get('test-interactive/questions', [InteractiveSimulatorController::class, 'show'])->name('test-interactive.show');
+    Route::delete('test-interactive/{question}', [InteractiveSimulatorController::class, 'destroy'])->name('test-interactive.destroy');
+
+
+
+    Route::get('simulator-quiz/create', [SimulatorQuizController::class, 'create'])->name('simulator-quiz.create');
+    Route::post('simulator-quiz', [SimulatorQuizController::class, 'store'])->name('simulator-quiz.store');
+    Route::get('simulator-quiz/questions', [SimulatorQuizController::class, 'show'])->name('simulator-quiz.show');
+    Route::get('simulator-quiz/{question}/edit', [SimulatorQuizController::class,'edit'])->name('simulator-quiz.edit');
+    Route::put('simulator-quiz/{question}', [SimulatorQuizController::class, 'update'])->name('simulator-quiz.update');
+    Route::delete('simulator-quiz/{question}', [SimulatorQuizController::class, 'destroy'])->name('simulator-quiz.destroy');
 });
 
 // Authentication Routes

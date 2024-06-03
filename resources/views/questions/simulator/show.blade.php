@@ -11,7 +11,7 @@
     <div class="row">
         <div class="col-lg-12 margin-tb mb-4">
             <div class="pull-left">
-                <h2>Тест
+                <h2>Тренажер викторина
                     <div class="float-end">
                         <a class="btn btn-primary" href="{{ route('tests.index') }}"> Назад</a>
                     </div>
@@ -21,10 +21,10 @@
     </div>
     <div class="container">
         <div class="questions">
-            @foreach ($interactiveSimulator as $question)
+            @foreach ($simulator as $question)
                 <div class="question">
-                    <h3>{{ $question->question }}</h3>
-                    <p>Ответ: {{ $question->answer }}</p>
+                    <h3>{{ $question->question_text }}</h3>
+                    <p>Правильный ответ: {{ $question->correct_answer }}</p>
                     @if (!empty($question->options))
                         <ul>
                             @foreach ($question->options as $option)
@@ -32,9 +32,8 @@
                             @endforeach
                         </ul>
                     @endif
-
-                    <a href="{{ route('test-interactive.edit', ['test' => $test->id, 'question' => $question->id]) }}" class="btn btn-primary">Редактировать</a>
-                    <form action="{{ route('test-interactive.destroy', ['test' => $test->id, 'question' => $question->id]) }}" method="POST" style="display:inline;">
+                    <a href="{{ route('simulator-quiz.edit', ['test' => $test->id, 'question' => $question->id]) }}" class="btn btn-primary">Редактировать</a>
+                    <form action="{{ route('simulator-quiz.destroy', ['test' => $test->id, 'question' => $question->id]) }}" method="POST" style="display:inline;">
                         @csrf
                         @method('DELETE')
                         <button type="submit" class="btn btn-danger">Удалить</button>

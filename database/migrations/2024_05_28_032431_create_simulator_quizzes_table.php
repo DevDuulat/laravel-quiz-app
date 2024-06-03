@@ -1,5 +1,4 @@
 <?php
-
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -14,9 +13,10 @@ return new class extends Migration
         Schema::create('simulator_quizzes', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('test_id');
-            $table->foreign('test_id')->references('id')->on('tests');
+            $table->foreign('test_id')->references('id')->on('tests')->onDelete('cascade');
             $table->string('question_text');
             $table->string('correct_answer');
+
             $table->timestamps();
         });
     }
@@ -26,6 +26,9 @@ return new class extends Migration
      */
     public function down(): void
     {
+        Schema::table('simulator_quizzes', function (Blueprint $table) {
+            $table->dropForeign(['test_id']);
+        });
         Schema::dropIfExists('simulator_quizzes');
     }
 };
