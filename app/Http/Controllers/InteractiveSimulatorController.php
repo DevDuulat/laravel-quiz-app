@@ -95,7 +95,7 @@ class InteractiveSimulatorController extends Controller
             $test->interactiveSimulator()->save($question);
         }
 
-        return redirect()->route('tests.show', ['test' => $test_id])
+        return redirect()->route('test-interactive.show', ['test' => $test_id])
             ->with('success', 'Вопросы созданы успешно.');
     }
 
