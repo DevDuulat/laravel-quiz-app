@@ -45,9 +45,9 @@ class InteractiveSimulatorController extends Controller
             'answer' => $request->input('answer'),
             'options' => json_decode($request->input('options'), true),
         ]);
+        return redirect()->route('test-interactive.show', ['test' => $test->id])
+            ->with('success', 'Вопросы созданы успешно.');
 
-        return redirect()->route('tests.show', ['test' => $test->id])
-            ->with('success', 'Вопрос успешно обновлен.');
     }
 
     public function show(Test $test)
@@ -94,9 +94,8 @@ class InteractiveSimulatorController extends Controller
 
             $test->interactiveSimulator()->save($question);
         }
+        return redirect()->route('tests.index')->with('success', 'Вопрос успешно обновлен.');
 
-        return redirect()->route('test-interactive.show', ['test' => $test_id])
-            ->with('success', 'Вопросы созданы успешно.');
     }
 
     public function destroy(Test $test, InteractiveSimulator $question)

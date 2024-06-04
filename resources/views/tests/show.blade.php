@@ -20,27 +20,23 @@
         </div>
     </div>
     <div class="container">
-        <div class="questions">
-            @foreach ($interactiveSimulator as $question)
-                <div class="question">
-                    <h3>{{ $question->question }}</h3>
-                    <p>Ответ: {{ $question->answer }}</p>
-                    @if (!empty($question->options))
-                        <ul>
-                            @foreach ($question->options as $option)
-                                <li>{{ $option }}</li>
-                            @endforeach
-                        </ul>
-                    @endif
+        <div class="card mb-3">
+            <div class="card-header">
+                <h1 class="card-title">{{ $test->name }}</h1>
+            </div>
+            <div class="card-body">
+                <p class="card-text">{{ $test->description }}</p>
+            </div>
+        </div>
 
-                    <a href="{{ route('test-interactive.edit', ['test' => $test->id, 'question' => $question->id]) }}" class="btn btn-primary">Редактировать</a>
-                    <form action="{{ route('test-interactive.destroy', ['test' => $test->id, 'question' => $question->id]) }}" method="POST" style="display:inline;">
-                        @csrf
-                        @method('DELETE')
-                        <button type="submit" class="btn btn-danger">Удалить</button>
-                    </form>
-                </div>
-            @endforeach
+        <div class="card mb-3">
+            <div class="card-body">
+                <h2 class="card-title">Информация о тесте</h2>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">Количество вопросов для Тренажер викторина <span class="badge bg-primary">{{ $simulatorQuizCount }}</span></li>
+                    <li class="list-group-item">Количество вопросов для Интерактивный тренажер <span class="badge bg-primary">{{ $interactiveSimulatorCount }}</span></li>
+                </ul>
+            </div>
         </div>
     </div>
 @endsection

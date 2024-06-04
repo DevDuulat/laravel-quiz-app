@@ -73,8 +73,8 @@ class SimulatorQuizController extends Controller
             'question_text' => $request->input('questions.0.question_text'),
             'correct_answer' => $request->input('questions.0.correct_answer'),
         ]);
-
-        return redirect()->route('tests.index')->with('success', 'Вопрос успешно обновлен.');
+        return redirect()->route('simulator-quiz.show', ['test' => $test->id])
+            ->with('success', 'Вопросы созданы успешно.');
     }
 
     public function edit(Test $test, SimulatorQuiz $question)
