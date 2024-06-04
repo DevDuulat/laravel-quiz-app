@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ProfileUpdateRequest;
+use App\Models\Lecture;
+use App\Models\LectureAccess;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -14,10 +16,31 @@ class ProfileController extends Controller
     /**
      * Display the user's profile form.
      */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+    public function dashboard()
+    {
+        $user = Auth::user();
+        $totalLectures = Lecture::count();
+        $completedLectures = LectureAccess::where('user_id', $user->id)->count();
+
+        // Рассчитываем процент прохождения
+        $progress = $totalLectures > 0 ? ($completedLectures / $totalLectures) * 100 : 0;
+
+        return view('profile.index', compact('user','progress'));
+    }
+
     public function edit(Request $request): View
     {
-        return view('profile.edit', [
+        $user = Auth::user();
+        $completedLectures = LectureAccess::where('user_id', $user->id)->count();
+        $totalLectures = Lecture::count();
+        $progress = $totalLectures > 0 ? ($completedLectures / $totalLectures) * 100 : 0;
+        return view('profile.index', [
             'user' => $request->user(),
+            'progress' =>$progress
         ]);
     }
 
@@ -36,6 +59,22 @@ class ProfileController extends Controller
 
         return Redirect::route('profile.edit')->with('status', 'profile-updated');
     }
+    public function updatePhoto(Request $request)
+    {
+        $request->validate([
+            'avatar' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048', // убедитесь, что это соответствует вашим требованиям
+        ]);
+
+        $user = auth()->user();
+
+        // Сохраните загруженный файл в хранилище и получите его путь
+        $avatarPath = $request->file('avatar')->store('avatars', 'public');
+
+        // Обновите путь к аватару пользователя в базе данных
+        $user->avatar = $avatarPath;
+        $user->save();
+
+        return redirect()->back()->with('status', 'Фотография профиля успешно обновлена.');    }
 
     /**
      * Delete the user's account.

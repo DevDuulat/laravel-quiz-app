@@ -44,6 +44,11 @@ class User extends Authenticatable
         'password' => 'hashed',
     ];
 
+    public function getAvatarUrlAttribute()
+    {
+        return $this->avatar ? asset('storage/' . $this->avatar) : asset('images/default-avatar.jpg');
+    }
+
     public function lectures()
     {
         return $this->belongsToMany(Lecture::class, 'lecture_access', 'user_id', 'lecture_id');

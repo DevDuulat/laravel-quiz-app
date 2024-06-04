@@ -5,9 +5,9 @@
     <div class="row">
         <div class="col-lg-12 margin-tb">
             <div class="pull-left">
-                <h2>Edit Role
+                <h2>Редактировать роль
                     <div class="float-end">
-                        <a class="btn btn-primary" href="{{ route('roles.index') }}"> Back</a>
+                        <a class="btn btn-primary" href="{{ route('roles.index') }}"> Назад</a>
                     </div>
                 </h2>
             </div>
@@ -17,7 +17,7 @@
 
     @if (count($errors) > 0)
         <div class="alert alert-danger">
-            <strong>Whoops!</strong> There were some problems with your input.<br><br>
+            <strong>Упс!</strong> Возникли проблемы с вашими данными.<br><br>
             <ul>
                 @foreach ($errors->all() as $error)
                     <li>{{ $error }}</li>
@@ -31,14 +31,14 @@
         <div class="row">
             <div class="col-xs-12 mb-3">
                 <div class="form-group">
-                    <strong>Name:</strong>
+                    <strong>Название:</strong>
                     <input type="text" value="{{ $role->name }}" name="name" class="form-control"
-                           placeholder="Name">
+                           placeholder="Название">
                 </div>
             </div>
             <div class="col-xs-12 mb-3">
                 <div class="form-group">
-                    <strong>Permission:</strong>
+                    <strong>Разрешения:</strong>
                     <br />
                     @foreach ($permission as $value)
                         <label>
@@ -50,7 +50,7 @@
                 </div>
             </div>
             <div class="col-xs-12 mb-3 text-center">
-                <button type="submit" class="btn btn-primary">Submit</button>
+                <button type="submit" class="btn btn-primary">Отправить</button>
             </div>
         </div>
     </form>

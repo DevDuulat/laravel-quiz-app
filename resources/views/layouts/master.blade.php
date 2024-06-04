@@ -5,19 +5,26 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>Laravel Spatie Permission</title>
+    <title>Админ панель</title>
     <script src="{{ asset('js/app.js') }}" defer></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/admin.css') }}" rel="stylesheet">
+
 </head>
 
 <body>
 <div id="app">
     <nav class="navbar navbar-expand-md navbar-light navbar-laravel">
         <div class="container">
-            <a class="navbar-brand" href="{{ url('/') }}">
-              Laravel
+            <a class="navbar-brand btn btn-primary text-white" href="{{ url('/') }}">
+                Перейти на сайт
             </a>
+            <a class="navbar-brand">
+              Админ панель
+            </a>
+
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -26,31 +33,23 @@
                 <ul class="navbar-nav ms-auto">
 
                     @guest
-                        <li><a class="nav-link" href="{{ route('login') }}">{{ ('Login') }} </a></li>
-                        <li><a class="nav-link" href="{{ route('register') }}">{{ ('Register') }}</a></li>
+                        <li><a class="nav-link" href="{{ route('login') }}">Войти </a></li>
+                        <li><a class="nav-link" href="{{ route('register') }}">Регистрация</a></li>
                     @else
-                        <li><a class="nav-link" href="{{ route('users.index') }}">Manage Users</a></li>
-                        <li><a class="nav-link" href="{{ route('roles.index') }}">Manage Role</a></li>
-                        <li><a class="nav-link" href="{{ route('lectures.index') }}">Manage Lecture</a></li>
-                        <li><a class="nav-link" href="{{ route('blogs.index') }}">Manage Blog</a></li>
-                        <li><a class="nav-link" href="{{ route('tests.index') }}">Manage Test</a></li>
-
-                        <li class="ms-3 nav-item dropdown">
-                            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                {{ Auth::user()->name }} <span class="caret"></span>
+                        <li><a class="nav-link" href="{{ route('users.index') }}">Пользователи</a></li>
+                        <li><a class="nav-link" href="{{ route('roles.index') }}">Роли</a></li>
+                        <li><a class="nav-link" href="{{ route('lectures.index') }}">Лекции</a></li>
+                        <li><a class="nav-link" href="{{ route('blogs.index') }}">Блог</a></li>
+                        <li><a class="nav-link" href="{{ route('tests.index') }}">Тест</a></li>
+                        <li><p class="nav-link"> <strong>Пользователь:   {{ Auth::user()->name }}</strong></p></li>
+                        <li><a class="nav-link btn btn-primary text-white" href="{{ route('logout') }}"
+                               onclick="event.preventDefault();
+                               document.getElementById('logout-form').submit();">
+                                Выйти
                             </a>
-
-                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="{{ route('logout') }}"
-                                   onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                    {{ ('Logout') }}
-                                </a>
-
-                                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                     @csrf
-                                </form>
-                            </div>
+                            </form>
                         </li>
                     @endguest
                 </ul>
@@ -61,6 +60,7 @@
     <main class="py-4 bg-light">
         <div class="container">
             @yield('content')
+            @yield('scripts')
         </div>
     </main>
 </div>

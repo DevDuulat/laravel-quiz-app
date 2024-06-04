@@ -5,16 +5,13 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Question extends Model
+class SimulatorQuiz extends Model
 {
     use HasFactory;
+    protected $table = 'simulator_quizzes';
 
     protected $fillable = [
-        'question', 'answer', 'options', 'test_id'
-    ];
-
-    protected $casts = [
-        'options' => 'array'
+        'test_id', 'question_text', 'correct_answer'
     ];
 
     public function test()

@@ -11,9 +11,10 @@ use Spatie\Permission\Models\Permission;
 
 class RoleController extends Controller
 {
-
     function __construct()
     {
+        $this->middleware('admin');
+        $this->middleware('auth');
         $this->middleware(['permission:role-list|role-create|role-edit|role-delete'], ['only' => ['index', 'store']]);
         $this->middleware(['permission:role-create'], ['only' => ['create', 'store']]);
         $this->middleware(['permission:role-edit'], ['only' => ['edit', 'update']]);
@@ -43,7 +44,7 @@ class RoleController extends Controller
         $role->syncPermissions($request->input('permission'));
 
         return redirect()->route('roles.index')
-            ->with('success', 'Role created successfully');
+            ->with('success', 'Роль создана успешно');
     }
 
     public function show($id)
@@ -81,13 +82,13 @@ class RoleController extends Controller
         $role->syncPermissions($request->input('permission'));
 
         return redirect()->route('roles.index')
-            ->with('success', 'Role updated successfully');
+            ->with('success', 'Роль успешно обновлена');
     }
 
     public function destroy($id)
     {
         DB::table("roles")->where('id', $id)->delete();
         return redirect()->route('roles.index')
-            ->with('success', 'Role deleted successfully');
+            ->with('success', 'Роль успешно удалена');
     }
 }

@@ -2,12 +2,17 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Question;
+use App\Models\InteractiveSimulator;
 use App\Models\Test;
 use Illuminate\Http\Request;
 
 class QuestionController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('admin');
+        $this->middleware('auth');
+    }
     public function create(Test $test)
     {
         return view('questions.create', compact('test'));
@@ -26,16 +31,16 @@ class QuestionController extends Controller
         foreach ($request->questions as $key => $questionData) {
             $options = json_decode($request->options[$key]['options'], true);
 
-            $question = new Question([
+            $question = new InteractiveSimulator([
                 'question' => $questionData['question'],
                 'answer' => $request->answers[$key]['answer'],
                 'options' => $options,
             ]);
 
-            $test->questions()->save($question);
+            $test->interactiveSimulator()->save($question);
         }
 
         return redirect()->route('tests.show', ['test' => $test_id])
-            ->with('success', 'Questions created successfully.');
+            ->with('success', 'Вопросы созданы успешно.');
     }
 }

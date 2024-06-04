@@ -12,6 +12,11 @@ use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('admin');
+        $this->middleware('auth');
+    }
 
     public function index(Request $request)
     {
@@ -41,7 +46,7 @@ class UserController extends Controller
         $user->assignRole($request->input('roles'));
 
         return redirect()->route('users.index')
-            ->with('success','User created successfully');
+            ->with('success','Пользователь создан успешно');
     }
 
     public function show($id)
@@ -82,13 +87,15 @@ class UserController extends Controller
         $user->assignRole($request->input('roles'));
 
         return redirect()->route('users.index')
-            ->with('success','User updated successfully');
+            ->with('success','Пользователь успешно обновлен');
     }
 
-    public function destroy($id)
+    public function destroy(User $user)
     {
-        User::find($id)->delete();
+        $user->delete();
+
         return redirect()->route('users.index')
-            ->with('success','User deleted successfully');
+            ->with('success', 'Лекция успешно удалена');
     }
+
 }

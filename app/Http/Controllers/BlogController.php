@@ -2,15 +2,23 @@
 
 namespace App\Http\Controllers;
 
+
 use App\Models\Blog;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 class BlogController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('admin');
+        $this->middleware('auth');
+    }
+
     public function index()
     {
-        $blogs = Blog::all();
+        $blogs = Blog::latest()->paginate(5);
         return view('blogs.index', compact('blogs'));
     }
 
@@ -18,6 +26,8 @@ class BlogController extends Controller
     {
         return view('blogs.create');
     }
+
+
 
     public function store(Request $request)
     {
@@ -42,7 +52,7 @@ class BlogController extends Controller
         Blog::create($requestData);
 
         return redirect()->route('blogs.index')
-            ->with('success', 'Blog created successfully.');
+            ->with('success', 'Блог успешно создан.');
     }
 
 
@@ -63,14 +73,24 @@ class BlogController extends Controller
             'title' => 'required|string|max:255',
             'description' => 'required|string',
             'publication_date' => 'required|date',
-            'cover' => 'nullable|string|max:255',
+            'cover' => 'nullable|file|max:2048|mimes:jpeg,png,jpg',
             'content' => 'required|string',
         ]);
 
-        $blog->update($request->all());
+        if ($request->hasFile('cover')) {
+            $coverPath = $request->file('cover')->store('covers', 'public');
+
+            Storage::disk('public')->delete($blog->cover);
+
+            $blog->cover = $coverPath;
+        }
+
+        $blog->fill($request->only('title', 'description', 'publication_date', 'content'));
+
+        $blog->save();
 
         return redirect()->route('blogs.index')
-            ->with('success', 'Blog updated successfully.');
+            ->with('success', 'Блог успешно обновлен.');
     }
 
     public function destroy(Blog $blog)
@@ -78,6 +98,6 @@ class BlogController extends Controller
         $blog->delete();
 
         return redirect()->route('blogs.index')
-            ->with('success', 'Blog deleted successfully.');
+            ->with('success', 'Блог успешно удален.');
     }
 }

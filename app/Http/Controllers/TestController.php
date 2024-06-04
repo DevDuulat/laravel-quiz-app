@@ -2,14 +2,21 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\InteractiveSimulator;
+use App\Models\SimulatorQuiz;
 use App\Models\Test;
 use Illuminate\Http\Request;
 
 class TestController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('admin');
+        $this->middleware('auth');
+    }
     public function index()
     {
-        $tests = Test::latest()->paginate(50);
+        $tests = Test::latest()->paginate(10);
         return view('tests.index', compact('tests'));
     }
 
@@ -32,12 +39,16 @@ class TestController extends Controller
         ]);
 
         return redirect()->route('tests.index')
-            ->with('success', 'Test created successfully.');
+            ->with('success', 'Тест создан успешно.');
     }
 
     public function show(Test $test)
     {
-        return view('tests.show', compact('test'));
+        $simulatorQuizCount = SimulatorQuiz::where('test_id', $test->id)->count();
+
+        $interactiveSimulatorCount = InteractiveSimulator::where('test_id', $test->id)->count();
+
+        return view('tests.show', compact('test', 'simulatorQuizCount', 'interactiveSimulatorCount'));
     }
 
     public function edit(Test $test)
@@ -55,7 +66,7 @@ class TestController extends Controller
         $test->update($request->all());
 
         return redirect()->route('tests.index')
-            ->with('success', 'Test updated successfully');
+            ->with('success', 'Тест успешно обновлен');
     }
 
     public function destroy(Test $test)
@@ -63,6 +74,6 @@ class TestController extends Controller
         $test->delete();
 
         return redirect()->route('tests.index')
-            ->with('success', 'Test deleted successfully');
+            ->with('success', 'Тест успешно удален');
     }
 }
