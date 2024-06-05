@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Creator: CorelDRAW 2020 (64-Bit) -->
+<svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" width="180px" height="100px" version="1.1" style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+viewBox="0 0 183 102"
+ xmlns:xlink="http://www.w3.org/1999/xlink"
+ xmlns:xodm="http://www.corel.com/coreldraw/odm/2003">
+ <defs>
+  <style type="text/css">
+   <![CDATA[
+    .fil3 {fill:#091230}
+    .fil2 {fill:#1E8183}
+    .fil1 {fill:#99D7D5}
+    .fil5 {fill:#B3DEDC}
+    .fil4 {fill:#D9D258}
+    .fil0 {fill:#FEFEFE}
+    .fnt0 {font-weight:normal;font-size:27px;font-family:'Arial'}
+   ]]>
+  </style>
+ </defs>
+ <g id="Слой_x0020_1">
+  <metadata id="CorelCorpID_0Corel-Layer"/>
+  <g id="_2046640043440">
+   <g>
+    <path class="fil0" d="M76 53c2,1 15,8 16,8 0,0 15,-7 16,-8l0 -28c-3,1 -14,8 -16,8 -2,0 -12,-7 -16,-8l0 29z"/>
+    <path class="fil1" d="M110 24l0 6c1,0 28,-14 31,-16l0 -8c-2,0 -24,12 -28,14 -2,1 -3,1 -3,3z"/>
+    <path class="fil1" d="M43 14c1,1 29,16 31,16l0 -8c-5,-2 -28,-15 -31,-16l0 8z"/>
+    <path class="fil2" d="M61 13c1,1 19,11 20,11l3 -8c-1,-2 -4,-4 -4,-6l4 0c0,-1 0,-2 -1,-4l-1 -3c0,-1 0,1 0,-1 0,0 0,0 0,0 0,0 0,0 0,0l-20 10z"/>
+    <path class="fil2" d="M100 10l8 0c-1,2 -8,7 -10,10l3 5c2,0 18,-9 21,-10 0,-1 0,0 -1,-1l-20 -10 -2 7z"/>
+    <path class="fil1" d="M83 25c1,1 7,4 8,4 1,0 7,-3 8,-4 -1,-2 -4,-4 -4,-6 1,-1 6,-5 6,-7l-17 0c2,3 3,1 1,6 -1,2 -2,5 -2,7z"/>
+    <path class="fil1" d="M50 29c5,2 21,11 23,12 0,-3 0,-5 0,-8 -3,-2 -21,-11 -23,-12l0 8z"/>
+    <path class="fil1" d="M110 33l0 8c1,0 21,-11 23,-12l0 -8c-2,0 -21,10 -23,12z"/>
+    <path class="fil1" d="M59 44c2,1 12,7 14,7l0 -8c-2,-1 -13,-7 -15,-7l0 8z"/>
+    <path class="fil1" d="M110 46l0 6c2,0 12,-6 14,-7l0 -8c-1,0 -9,5 -12,6 -2,1 -3,1 -3,3z"/>
+    <path class="fil2" d="M110 55l0 8c1,0 9,-4 11,-6 4,-2 3,0 3,-9 -2,0 -12,6 -14,7z"/>
+    <path class="fil1" d="M93 64l0 8c3,-1 11,-6 14,-7l0 -8c-3,1 -11,6 -14,7z"/>
+    <path class="fil2" d="M59 55c1,1 13,7 14,7l0 -8c-3,-1 -13,-7 -14,-7l0 7z"/>
+    <path class="fil1" d="M76 63c1,1 2,2 3,2 3,1 9,5 11,6l0 -8 -14 -7 0 7z"/>
+    <path class="fil3" d="M87 53l2 0 0 -8c1,1 4,6 6,7 1,1 2,1 3,1 -2,-3 -4,-5 -6,-8 1,-3 5,-6 6,-8 -5,0 -5,6 -9,8l0 -8 -2 0 0 16z"/>
+    <path class="fil4" d="M89 7l-4 -3c0,1 1,5 2,6l10 0 2 -6c-2,1 -3,2 -4,3l-2 -7c-2,2 -1,5 -3,7z"/>
+   </g>
+   <text x="-2" y="101"  class="fil5 fnt0">КРИПТОФОРТ</text>
+  </g>
+ </g>
+</svg>
