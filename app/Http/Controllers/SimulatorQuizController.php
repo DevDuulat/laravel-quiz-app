@@ -24,7 +24,7 @@ class SimulatorQuizController extends Controller
         $simulator = \App\Models\SimulatorQuiz::where('test_id', $test->id)->get();
 
         if ($simulator->isEmpty()) {
-            abort(404, 'simulator not found for this test.');
+            return back()->with('alert', 'Симулятор для этого теста не найден.');
         }
 
         return view('questions.simulator.show', compact('test','simulator'));
@@ -35,7 +35,7 @@ class SimulatorQuizController extends Controller
         $attributes = [];
 
         foreach ($request->questions as $index => $questionData) {
-            $questionIndex = $index + 1; // For user-friendly 1-based indexing
+            $questionIndex = $index + 1;
             $attributes["questions.{$index}.question_text"] = "вопрос {$questionIndex}";
             $attributes["questions.{$index}.correct_answer"] = "правильный ответ {$questionIndex}";
 

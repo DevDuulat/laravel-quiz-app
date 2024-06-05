@@ -55,7 +55,7 @@ class InteractiveSimulatorController extends Controller
         $interactiveSimulator = InteractiveSimulator::where('test_id', $test->id)->get();
 
         if ($interactiveSimulator->isEmpty()) {
-            abort(404, 'Interactive simulator not found for this test.');
+            return back()->with('alert', 'Интерактивный тренажер для этого теста не найден.');
         }
 
         return view('questions.interactive.show', compact('test', 'interactiveSimulator'));

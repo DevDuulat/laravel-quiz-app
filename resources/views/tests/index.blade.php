@@ -21,6 +21,11 @@
             <p>{{ $message }}</p>
         </div>
     @endif
+    @if (session('alert'))
+        <div class="alert alert-warning">
+            {{ session('alert') }}
+        </div>
+    @endif
 
     <table class="table table-striped table-hover">
         <tr>
