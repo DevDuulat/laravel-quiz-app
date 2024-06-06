@@ -23,7 +23,7 @@ class LectureController extends Controller
 
     public function index()
     {
-        $lectures = Lecture::latest()->paginate(10);
+        $lectures = Lecture::latest()->paginate(5);
         return view('lectures.index', compact('lectures'));
     }
 
@@ -44,7 +44,7 @@ class LectureController extends Controller
     {
         $request->validate([
             'title' => 'required|string|max:255',
-            'text' => 'required',
+            'text' => 'required|string|max:255',
             'publication_date' => 'required|date',
             'image_url' => 'nullable|file|max:2048|mimes:jpeg,png,jpg',
 
