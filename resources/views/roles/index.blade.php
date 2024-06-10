@@ -5,11 +5,11 @@
         <div class="col-lg-12 margin-tb mb-4">
             <div class="pull-left">
                 <h2>Управление ролями
-                    <div class="float-end">
-                        @can('role-create')
-                            <a class="btn btn-success" href="{{ route('roles.create') }}"> Создать новую роль</a>
-                        @endcan
-                    </div>
+{{--                    <div class="float-end">--}}
+{{--                        @can('role-create')--}}
+{{--                            <a class="btn btn-success" href="{{ route('roles.create') }}"> Создать новую роль</a>--}}
+{{--                        @endcan--}}
+{{--                    </div>--}}
                 </h2>
             </div>
         </div>
@@ -32,9 +32,9 @@
                 <td>
                     <form action="{{ route('roles.destroy', $role->id) }}" method="POST">
                         <a class="btn btn-info" href="{{ route('roles.show', $role->id) }}">Просмотр</a>
-                        @can('role-edit')
-                            <a class="btn btn-primary" href="{{ route('roles.edit', $role->id) }}">Редактировать</a>
-                        @endcan
+{{--                        @can('role-edit')--}}
+{{--                            <a class="btn btn-primary" href="{{ route('roles.edit', $role->id) }}">Редактировать</a>--}}
+{{--                        @endcan--}}
 
 
                         @csrf

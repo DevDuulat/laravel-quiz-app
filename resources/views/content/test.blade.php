@@ -196,8 +196,8 @@
         //creating a new span and div tag for question and option and passing the value using array index
         let que_tag =
             '<span>' +
-            questions[index].numb +
-            '. ' +
+            // questions[index].numb +
+            // '. ' +
             questions[index].question +
             '</span>'
         let option_tag =

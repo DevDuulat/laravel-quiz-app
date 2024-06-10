@@ -33,8 +33,8 @@
             <div class="card-body">
                 <h2 class="card-title">Информация о тесте</h2>
                 <ul class="list-group list-group-flush">
-                    <li class="list-group-item">Количество вопросов для Тренажер викторина <span class="badge bg-primary">{{ $simulatorQuizCount }}</span></li>
-                    <li class="list-group-item">Количество вопросов для Интерактивный тренажер <span class="badge bg-primary">{{ $interactiveSimulatorCount }}</span></li>
+                    <li class="list-group-item">Количество вопросов для Интерактивный тренажер <span class="badge bg-primary">{{ $simulatorQuizCount }}</span></li>
+                    <li class="list-group-item">Количество вопросов для Тренажер викторина <span class="badge bg-primary">{{ $interactiveSimulatorCount }}</span></li>
                 </ul>
             </div>
         </div>

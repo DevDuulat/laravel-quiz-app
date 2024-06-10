@@ -32,7 +32,7 @@
             <tr>
                 <td>{{ $lecture->title }}</td>
 
-                <td>{!! Str::limit($lecture->text, 250)  !!}</td>
+                <td>{!! Str::limit($lecture->text, 350)  !!}</td>
                 <td>
                     <form action="{{ route('lectures.destroy',$lecture->id) }}" method="POST">
                         <a class="btn btn-info" href="{{ route('lectures.show',$lecture->id) }}">Просмотр</a>

@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\LectureRequest;
 use App\Models\Lecture;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
 
@@ -40,16 +40,8 @@ class LectureController extends Controller
      * Store a newly created resource in storage.
      */
 
-    public function store(Request $request)
+    public function store(LectureRequest $request)
     {
-        $request->validate([
-            'title' => 'required|string|max:255',
-            'text' => 'required|string|max:255',
-            'publication_date' => 'required|date',
-            'image_url' => 'nullable|file|max:2048|mimes:jpeg,png,jpg',
-
-        ]);
-
         if ($request->hasFile('image_url')) {
             $coverPath = $request->file('image_url')->store('covers', 'public');
             $image = $request->file('image_url');
@@ -85,15 +77,8 @@ class LectureController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Lecture $lecture)
+    public function update(LectureRequest $request, Lecture $lecture)
     {
-        $request->validate([
-            'title' => 'required|string|max:255',
-            'text' => 'required|string',
-            'publication_date' => 'required|date',
-            'image_url' => 'nullable|file|max:2048|mimes:jpeg,png,jpg',
-        ]);
-
         $requestData = $request->except('image_url');
 
         if ($request->hasFile('image_url')) {
@@ -123,7 +108,7 @@ class LectureController extends Controller
         $lecture->delete();
 
         return redirect()->route('lectures.index')
-            ->with('success', 'Lecture deleted successfully');
+            ->with('success', 'Лекция успешно удалена');
     }
 
 }

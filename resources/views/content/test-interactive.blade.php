@@ -3,7 +3,8 @@
 @section('content')
 
     <div class="container">
-        <h1 class="text-center">Тест</h1>
+        <div class="content-info">
+        <h1 class="text-center">Интерактивный тренажер</h1>
         <p class="text-center">Данный тест направлен на проверку знаний, полученных на предыдущих страницах. Ваша задача - вписать ответ в окно</p>
         <p class="text-center">1. Ответ может быть число, слово или группа слов</p>
         <p class="text-center">2. Ответ записывайте строчными буквами </p>
@@ -24,6 +25,7 @@
 
         <div id="resultBox" class="my-4">
             <button class="btn btn-success" onclick="getResult()">Результат</button>
+        </div>
         </div>
     </div>
 
@@ -78,25 +80,21 @@
             }
 
             let estimation = 0;
-            switch (prav) {
-                case 0:
-                case 1:
-                    estimation = 2;
-                    break;
-                case 2:
-                    estimation = 3;
-                    break;
-                case 3:
-                    estimation = 4;
-                    break;
-                case 4:
-                case 5:
-                    estimation = 5;
-                    break;
+            if (prav === totalQuestions) {
+                estimation = 5;
+            } else if (prav === totalQuestions - 1) {
+                estimation = 4;
+            } else if (prav >= totalQuestions - 2) {
+                estimation = 3;
+            } else {
+                estimation = 2;
             }
+
             let resultHtml = "<p>Количество верных ответов: " + prav + "</p><p>Ваша оценка: " + estimation + "</p>";
             document.getElementById("resultModalBody").innerHTML = resultHtml;
             $('#resultModal').modal('show'); // Показываем модальное окно с результатами
         }
     </script>
+
+
 @endsection

@@ -2949,3 +2949,9 @@ TODO
 .form-control {
     font-size: 1.8rem !important;
 }
+.content-info{
+    padding-top: 100px;
+}
+
+.progress-bar {    background-color: #1e8183 !important;
+}
