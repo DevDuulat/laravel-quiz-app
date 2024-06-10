@@ -244,9 +244,9 @@ function showResult() {
 	} else if (userScore > 1) {
 		// if user scored more than 1
 		let scoreTag =
-			'<span>and nice 😎, You got <p>' +
+			'<span>отлично)вы набрали <p>' +
 			userScore +
-			'</p> out of <p>' +
+			'</p> из<p>' +
 			questions.length +
 			'</p></span>'
 		scoreText.innerHTML = scoreTag
