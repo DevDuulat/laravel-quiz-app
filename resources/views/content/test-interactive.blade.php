@@ -85,12 +85,19 @@
         }
 
         let prav = 0;
+        let wrongAnswers = [];
         let answeredQuestions = new Set();
 
         function prom(questionId, correctAnswer) {
             const input = document.getElementById("edit" + questionId);
             if (input.value.trim().toLowerCase() === correctAnswer.trim().toLowerCase()) {
                 prav++;
+            } else {
+                wrongAnswers.push({
+                    question: questionId,
+                    userAnswer: input.value.trim(),
+                    correctAnswer: correctAnswer.trim()
+                });
             }
             document.getElementById("btn" + questionId).disabled = true;
             input.disabled = true;
@@ -116,6 +123,13 @@
             }
 
             let resultHtml = "<p>Количество верных ответов: " + prav + "</p><p>Ваша оценка: " + estimation + "</p>";
+            if (wrongAnswers.length > 0) {
+                resultHtml += "<p>Неправильные ответы:</p><ul>";
+                wrongAnswers.forEach(function(answer) {
+                    resultHtml += "<li>Вопрос #" + answer.question + ": Вы ответили '" + answer.userAnswer + "', правильный ответ: '" + answer.correctAnswer + "'</li>";
+                });
+                resultHtml += "</ul>";
+            }
             document.getElementById("resultBox").innerHTML = resultHtml;
             document.getElementById("resultBox").style.display = "block";
         }

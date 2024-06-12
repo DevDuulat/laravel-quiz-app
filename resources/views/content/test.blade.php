@@ -224,7 +224,9 @@
             const resultList = result_box.querySelector('.score_text');
             let resultContent = '<ul>';
             questions.forEach((question, index) => {
-                resultContent += '<li>' + question.question + '<br>Правильный ответ: ' + question.answer + '</li>';
+                const userAnswer = (question.options.findIndex(option => option === question.answer) + 1) + '. ' + question.answer;
+                const correctIcon = (userAnswer === question.options[0]) ? '<i class="fas fa-check"></i>' : '<i class="fas fa-times"></i>';
+                resultContent += '<li>' + question.question + '<br>Ваш ответ: ' + userAnswer + ' ' + correctIcon + '<br>Правильный ответ: ' + question.options[0] + '</li>';
             });
             resultContent += '</ul>';
             resultList.innerHTML += resultContent;
