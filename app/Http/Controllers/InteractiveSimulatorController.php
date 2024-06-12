@@ -25,29 +25,25 @@ class InteractiveSimulatorController extends Controller
 
     public function update(Request $request, Test $test, InteractiveSimulator $question)
     {
-        $attributes = [];
-
-        $attributes['question'] = $request->input('question');
-        $attributes['answer'] = $request->input('answer');
-        $attributes['options'] = json_decode($request->input('options'), true);
-
-        $request->validate([
+        $attributes = $request->validate([
             'question' => 'required|string',
             'answer' => 'required|string',
             'options' => 'nullable|string',
-        ], [
-            'question.required' => 'Поле :attribute обязательно для заполнения.',
-            'answer.required' => 'Поле :attribute обязательно для заполнения.',
-        ], $attributes);
-
-        $question->update([
-            'question' => $request->input('question'),
-            'answer' => $request->input('answer'),
-            'options' => json_decode($request->input('options'), true),
         ]);
-        return redirect()->route('test-interactive.show', ['test' => $test->id])
-            ->with('success', 'Вопросы созданы успешно.');
 
+        $question->question = $attributes['question'];
+        $question->answer = $attributes['answer'];
+        $question->options = json_decode($attributes['options'], true);
+
+        if ($request->hasFile('image')) {
+            $imagePath = $request->file('image')->store('images', 'public');
+            $question->image = $imagePath;
+        }
+
+        $question->save();
+
+        return redirect()->route('test-interactive.show', ['test' => $test->id])
+            ->with('success', 'Вопрос успешно обновлен.');
     }
 
     public function show(Test $test)

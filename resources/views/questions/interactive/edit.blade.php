@@ -18,7 +18,7 @@
                 </ul>
             </div>
         @endif
-        <form action="{{ route('test-interactive.update', ['test' => $test->id, 'question' => $question->id]) }}" method="POST" id="question-form">
+        <form action="{{ route('test-interactive.update', ['test' => $test->id, 'question' => $question->id]) }}" method="POST" id="question-form" enctype="multipart/form-data">
             @csrf
             @method('PUT')
             <div class="form-group">
@@ -32,17 +32,16 @@
             <div class="form-group">
                 <label for="options">Варианты ответов</label>
                 <div class="options-container" data-key="0">
-                    @php
-                        $options = is_string($question->options) ? json_decode($question->options, true) : $question->options;
-                    @endphp
-                    @if(is_array($options))
-                        @foreach ($options as $option)
-                            <div class="option-block">
-                                <input type="text" name="options[]" class="form-control mb-2" value="{{ $option }}">
-                            </div>
-                        @endforeach
-                    @endif
+                    @foreach ($question->options as $option)
+                        <div class="option-block">
+                            <input type="text" name="options[]" class="form-control mb-2" value="{{ $option }}">
+                        </div>
+                    @endforeach
                 </div>
+            </div>
+            <div class="form-group">
+                <label for="image">Изображение</label>
+                <input type="file" name="image" class="form-control">
             </div>
             <button type="submit" class="btn btn-primary" onclick="serializeOptions()">Сохранить изменения</button>
         </form>
