@@ -13,9 +13,6 @@ use Illuminate\View\View;
 
 class ProfileController extends Controller
 {
-    /**
-     * Display the user's profile form.
-     */
     public function __construct()
     {
         $this->middleware('auth');
@@ -26,7 +23,6 @@ class ProfileController extends Controller
         $totalLectures = Lecture::count();
         $completedLectures = LectureAccess::where('user_id', $user->id)->count();
 
-        // Рассчитываем процент прохождения
         $progress = $totalLectures > 0 ? ($completedLectures / $totalLectures) * 100 : 0;
 
         return view('profile.index', compact('user','progress'));
@@ -44,9 +40,6 @@ class ProfileController extends Controller
         ]);
     }
 
-    /**
-     * Update the user's profile information.
-     */
     public function update(ProfileUpdateRequest $request): RedirectResponse
     {
         $request->user()->fill($request->validated());
@@ -67,18 +60,13 @@ class ProfileController extends Controller
 
         $user = auth()->user();
 
-        // Сохраните загруженный файл в хранилище и получите его путь
         $avatarPath = $request->file('avatar')->store('avatars', 'public');
 
-        // Обновите путь к аватару пользователя в базе данных
         $user->avatar = $avatarPath;
         $user->save();
 
         return redirect()->back()->with('status', 'Фотография профиля успешно обновлена.');    }
 
-    /**
-     * Delete the user's account.
-     */
     public function destroy(Request $request): RedirectResponse
     {
         $request->validateWithBag('userDeletion', [

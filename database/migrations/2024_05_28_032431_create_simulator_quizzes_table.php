@@ -16,7 +16,7 @@ return new class extends Migration
             $table->foreign('test_id')->references('id')->on('tests')->onDelete('cascade');
             $table->string('question_text');
             $table->string('correct_answer');
-
+            $table->string('image', 255)->nullable();
             $table->timestamps();
         });
     }

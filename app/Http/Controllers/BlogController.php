@@ -57,7 +57,6 @@ class BlogController extends Controller
 
     public function update(BlogRequest $request, Blog $blog)
     {
-
         if ($request->hasFile('cover')) {
             $coverPath = $request->file('cover')->store('covers', 'public');
 

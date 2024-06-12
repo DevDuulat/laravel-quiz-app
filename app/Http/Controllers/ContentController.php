@@ -37,7 +37,6 @@ class ContentController extends Controller
         return view('content.tests', compact('testsWithInteractiveQuestions', 'testsWithQuizQuestions'));
     }
 
-
     public function showLecture($id)
     {
         $lecture = Lecture::findOrFail($id);
@@ -53,7 +52,6 @@ class ContentController extends Controller
         $test = Test::findOrFail($id);
         $questions = $test->questions;
 
-
         return view('content.test', compact('test', 'questions'));
     }
     public function SimulatorQuizShow($id)
@@ -63,7 +61,6 @@ class ContentController extends Controller
         return view('content.test-interactive', compact('test',  'questions'));
     }
 
-
     public function InteractiveSimulatorShow($id)
     {
         $test = Test::with('interactiveSimulator')->findOrFail($id);
@@ -71,6 +68,4 @@ class ContentController extends Controller
 
         return view('content.test', compact('test', 'questions'));
     }
-
-
 }

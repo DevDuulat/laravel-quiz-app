@@ -9,9 +9,7 @@ use Illuminate\Support\Facades\Storage;
 
 class LectureController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+
     public function __construct()
     {
         $this->middleware('admin');
@@ -28,17 +26,10 @@ class LectureController extends Controller
     }
 
 
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create()
     {
         return view('lectures.create');
     }
-
-    /**
-     * Store a newly created resource in storage.
-     */
 
     public function store(LectureRequest $request)
     {
@@ -66,17 +57,11 @@ class LectureController extends Controller
         return view('lectures.show', compact('lecture'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
     public function edit(Lecture $lecture)
     {
         return view('lectures.edit', compact('lecture'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
     public function update(LectureRequest $request, Lecture $lecture)
     {
         $requestData = $request->except('image_url');
@@ -97,12 +82,6 @@ class LectureController extends Controller
             ->with('success', 'Лекция успешно обновлена.');
     }
 
-
-
-
-    /**
-     * Remove the specified resource from storage.
-     */
     public function destroy(Lecture $lecture)
     {
         $lecture->delete();
@@ -110,5 +89,4 @@ class LectureController extends Controller
         return redirect()->route('lectures.index')
             ->with('success', 'Лекция успешно удалена');
     }
-
 }
