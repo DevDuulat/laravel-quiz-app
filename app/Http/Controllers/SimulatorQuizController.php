@@ -46,6 +46,7 @@ class SimulatorQuizController extends Controller
         $request->validate([
             'questions.*.question_text' => 'required|string',
             'questions.*.correct_answer' => 'required|string',
+            'questions.*.image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ], $messages, $attributes);
 
         $test = Test::findOrFail($test_id);
@@ -55,6 +56,11 @@ class SimulatorQuizController extends Controller
                 'question_text' => $questionData['question_text'],
                 'correct_answer' => $questionData['correct_answer'],
             ]);
+
+            if ($request->hasFile("questions.{$key}.image")) {
+                $imagePath = $request->file("questions.{$key}.image")->store('images', 'public');
+                $question->image = $imagePath;
+            }
 
             $test->quizSimulator()->save($question);
         }
@@ -67,15 +73,24 @@ class SimulatorQuizController extends Controller
         $request->validate([
             'questions.0.question_text' => 'required|string',
             'questions.0.correct_answer' => 'required|string',
+            'questions.0.image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
 
         $question->update([
             'question_text' => $request->input('questions.0.question_text'),
             'correct_answer' => $request->input('questions.0.correct_answer'),
         ]);
+
+        if ($request->hasFile('questions.0.image')) {
+            $imagePath = $request->file('questions.0.image')->store('images', 'public');
+            $question->image = $imagePath;
+            $question->save();
+        }
+
         return redirect()->route('simulator-quiz.show', ['test' => $test->id])
-            ->with('success', 'Вопросы созданы успешно.');
+            ->with('success', 'Вопрос успешно обновлен.');
     }
+
 
     public function edit(Test $test, SimulatorQuiz $question)
     {
