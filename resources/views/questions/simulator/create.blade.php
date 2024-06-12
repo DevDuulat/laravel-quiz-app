@@ -22,7 +22,7 @@
                 </ul>
             </div>
         @endif
-        <form action="{{ route('simulator-quiz.store', ['test' => $test->id]) }}" method="POST" id="question-form">
+        <form action="{{ route('simulator-quiz.store', ['test' => $test->id]) }}" method="POST" id="question-form" enctype="multipart/form-data">
             @csrf
             <div id="question-blocks">
                 <div class="question-block">
@@ -33,7 +33,13 @@
                         <div class="invalid-feedback">{{ $message }}</div>
                         @enderror
                     </div>
-
+                    <div class="form-group">
+                        <label for="questions[0][image]">Изображение</label>
+                        <input type="file" name="questions[0][image]" class="form-control @error('questions.0.image') is-invalid @enderror">
+                        @error('questions.0.image')
+                        <div class="invalid-feedback">{{ $message }}</div>
+                        @enderror
+                    </div>
                     <div class="form-group">
                         <label for="questions[0][correct_answer]">Правильный ответ</label>
                         <input type="text" name="questions[0][correct_answer]" class="form-control @error('questions.0.correct_answer') is-invalid @enderror" value="{{ old('questions.0.correct_answer') }}">
@@ -46,8 +52,6 @@
             <button type="button" class="btn btn-success mt-3" onclick="addQuestionBlock()">Добавить Вопрос (+)</button>
             <button type="submit" class="btn btn-primary mt-3">Создать Вопрос</button>
         </form>
-
-
 
         <script>
             let questionCount = 1;
@@ -69,6 +73,17 @@
                 questionFormGroup.appendChild(questionLabel);
                 questionFormGroup.appendChild(questionInput);
 
+                const imageFormGroup = document.createElement('div');
+                imageFormGroup.classList.add('form-group');
+                const imageLabel = document.createElement('label');
+                imageLabel.textContent = 'Изображение';
+                const imageInput = document.createElement('input');
+                imageInput.type = 'file';
+                imageInput.name = `questions[${questionCount}][image]`;
+                imageInput.classList.add('form-control');
+                imageFormGroup.appendChild(imageLabel);
+                imageFormGroup.appendChild(imageInput);
+
                 const answerFormGroup = document.createElement('div');
                 answerFormGroup.classList.add('form-group');
                 const answerLabel = document.createElement('label');
@@ -87,6 +102,7 @@
                 removeButton.onclick = () => removeQuestionBlock(removeButton);
 
                 newBlock.appendChild(questionFormGroup);
+                newBlock.appendChild(imageFormGroup);
                 newBlock.appendChild(answerFormGroup);
                 newBlock.appendChild(removeButton);
 

@@ -16,45 +16,69 @@
                     <div class="card-body">
                         <p class="card-text">{{ $question->question_text }}</p>
 
+                        @if (!empty($question->image))
+                            <div class="text-center mb-3">
+                                <img src="{{ asset('storage/' . $question->image) }}" alt="Question Image" class="img-fluid rounded" style="max-width: 300px;">
+                            </div>
+                        @endif
+
                         <div class="input-group mb-3">
-                            <input type="text" class="form-control" id="edit{{ $question->id }}" placeholder="введите текст или число" required>
+                            <input type="text" class="form-control" id="edit{{ $question->id }}" placeholder="Введите текст или число" required>
                             <button class="btn btn-primary" id="btn{{ $question->id }}" onclick="validateAndSubmit('{{ $question->id }}', '{{ $question->correct_answer }}')">Ответить</button>
                         </div>
                     </div>
                 </div>
             @endforeach
 
-            <div id="resultBox" class="my-4">
-                <button class="btn btn-success" onclick="getResult()">Результат</button>
+            <div id="resultBox" class="my-4" style="display: none;">
+                <!-- Сюда будут вставлены результаты -->
             </div>
         </div>
     </div>
 
-    <!-- Модальное окно для вывода результатов -->
-    <div class="modal fade" id="resultModal" tabindex="-1" role="dialog" aria-labelledby="resultModalLabel" aria-hidden="true" style="padding-right: 14px; padding-top: 160px;">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="resultModalLabel">Результаты теста</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body" id="resultModalBody">
-                    <!-- Сюда будут вставлены результаты -->
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Закрыть</button>
-                </div>
-            </div>
-        </div>
-    </div>
+    <style>
+        .content-info {
+            margin-top: 30px;
+        }
+
+        .card {
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: box-shadow 0.3s ease-in-out;
+        }
+
+        .card:hover {
+            box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .card-text {
+            font-size: 18px;
+            margin-bottom: 15px;
+        }
+
+        .input-group {
+            max-width: 400px;
+            margin: 0 auto;
+        }
+
+        .btn-primary {
+            margin-left: 10px;
+        }
+
+        #resultBox {
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            padding: 20px;
+            margin-top: 20px;
+        }
+    </style>
 
     <script>
         function validateAndSubmit(id, correctAnswer) {
             const input = document.getElementById('edit' + id);
             if (input.value.trim() === '') {
-                alert('Пожалуйста, введите текст или число.');
+                alert('Введите текст или число.');
             } else {
                 prom(id, correctAnswer);
             }
@@ -71,16 +95,16 @@
             document.getElementById("btn" + questionId).disabled = true;
             input.disabled = true;
             answeredQuestions.add(questionId);
+
+            const totalQuestions = {{ count($questions) }};
+            if (answeredQuestions.size === totalQuestions) {
+                showResult();
+            }
         }
 
-        function getResult() {
-            const totalQuestions = {{ count($questions) }};
-            if (answeredQuestions.size !== totalQuestions) {
-                alert('Пожалуйста, заполните все поля и нажмите кнопку "Ответить" для каждого вопроса перед просмотром результатов.');
-                return;
-            }
-
+        function showResult() {
             let estimation = 0;
+            const totalQuestions = {{ count($questions) }};
             if (prav === totalQuestions) {
                 estimation = 5;
             } else if (prav === totalQuestions - 1) {
@@ -92,8 +116,8 @@
             }
 
             let resultHtml = "<p>Количество верных ответов: " + prav + "</p><p>Ваша оценка: " + estimation + "</p>";
-            document.getElementById("resultModalBody").innerHTML = resultHtml;
-            $('#resultModal').modal('show'); // Показываем модальное окно с результатами
+            document.getElementById("resultBox").innerHTML = resultHtml;
+            document.getElementById("resultBox").style.display = "block";
         }
     </script>
 
