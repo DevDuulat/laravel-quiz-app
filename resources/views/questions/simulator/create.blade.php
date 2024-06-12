@@ -33,6 +33,7 @@
                         <div class="invalid-feedback">{{ $message }}</div>
                         @enderror
                     </div>
+
                     <div class="form-group">
                         <label for="questions[0][correct_answer]">Правильный ответ</label>
                         <input type="text" name="questions[0][correct_answer]" class="form-control @error('questions.0.correct_answer') is-invalid @enderror" value="{{ old('questions.0.correct_answer') }}">

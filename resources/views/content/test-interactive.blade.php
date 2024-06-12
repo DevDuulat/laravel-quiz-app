@@ -4,28 +4,29 @@
 
     <div class="container">
         <div class="content-info">
-        <h1 class="text-center">Интерактивный тренажер</h1>
-        <p class="text-center">Данный тест направлен на проверку знаний, полученных на предыдущих страницах. Ваша задача - вписать ответ в окно</p>
-        <p class="text-center">1. Ответ может быть число, слово или группа слов</p>
-        <p class="text-center">2. Ответ записывайте строчными буквами </p>
-        <p class="text-center">3. Ответ нельзя поменять после того как нажали на кнопку </p>
-        <p class="text-center">Удачи в прохождении теста!</p>
+            <h1 class="text-center">Интерактивный тренажер</h1>
+            <p class="text-center">Данный тест направлен на проверку знаний, полученных на предыдущих страницах. Ваша задача - вписать ответ в окно</p>
+            <p class="text-center">1. Ответ может быть число, слово или группа слов</p>
+            <p class="text-center">2. Ответ записывайте строчными буквами </p>
+            <p class="text-center">3. Ответ нельзя поменять после того как нажали на кнопку </p>
+            <p class="text-center">Удачи в прохождении теста!</p>
 
-        @foreach($questions as $question)
-            <div class="card mt-4">
-                <div class="card-body">
-                    <p class="card-text">{{ $question->question_text }}</p>
-                    <div class="input-group mb-3">
-                        <input type="text" class="form-control" id="edit{{ $question->id }}" placeholder="введите текст или число" required>
-                        <button class="btn btn-primary" id="btn{{ $question->id }}" onclick="validateAndSubmit('{{ $question->id }}', '{{ $question->correct_answer }}')">Ответить</button>
+            @foreach($questions as $question)
+                <div class="card mt-4">
+                    <div class="card-body">
+                        <p class="card-text">{{ $question->question_text }}</p>
+
+                        <div class="input-group mb-3">
+                            <input type="text" class="form-control" id="edit{{ $question->id }}" placeholder="введите текст или число" required>
+                            <button class="btn btn-primary" id="btn{{ $question->id }}" onclick="validateAndSubmit('{{ $question->id }}', '{{ $question->correct_answer }}')">Ответить</button>
+                        </div>
                     </div>
                 </div>
-            </div>
-        @endforeach
+            @endforeach
 
-        <div id="resultBox" class="my-4">
-            <button class="btn btn-success" onclick="getResult()">Результат</button>
-        </div>
+            <div id="resultBox" class="my-4">
+                <button class="btn btn-success" onclick="getResult()">Результат</button>
+            </div>
         </div>
     </div>
 
@@ -95,6 +96,5 @@
             $('#resultModal').modal('show'); // Показываем модальное окно с результатами
         }
     </script>
-
 
 @endsection
