@@ -16,7 +16,7 @@
             margin-bottom: 10px;
         }
         .question img {
-            max-width: 100%;
+            max-width: 20%;
             height: auto;
             margin-top: 10px;
             border-radius: 8px;
