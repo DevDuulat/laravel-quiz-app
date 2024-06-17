@@ -82,8 +82,6 @@ Route::prefix('tests/{test}')->group(function () {
     Route::get('test-interactive/questions', [InteractiveSimulatorController::class, 'show'])->name('test-interactive.show');
     Route::delete('test-interactive/{question}', [InteractiveSimulatorController::class, 'destroy'])->name('test-interactive.destroy');
 
-
-
     Route::get('simulator-quiz/create', [SimulatorQuizController::class, 'create'])->name('simulator-quiz.create');
     Route::post('simulator-quiz', [SimulatorQuizController::class, 'store'])->name('simulator-quiz.store');
     Route::get('simulator-quiz/questions', [SimulatorQuizController::class, 'show'])->name('simulator-quiz.show');

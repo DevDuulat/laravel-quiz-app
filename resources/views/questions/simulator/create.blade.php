@@ -28,11 +28,12 @@
                 <div class="question-block">
                     <div class="form-group">
                         <label for="questions[0][question_text]">Вопрос</label>
-                        <input type="text" name="questions[0][question_text]" class="form-control @error('questions.0.question_text') is-invalid @enderror" value="{{ old('questions.0.question_text') }}">
+                        <textarea name="questions[0][question_text]" class="form-control @error('questions.0.question_text') is-invalid @enderror">{{ old('questions.0.question_text') }}</textarea>
                         @error('questions.0.question_text')
                         <div class="invalid-feedback">{{ $message }}</div>
                         @enderror
                     </div>
+
                     <div class="form-group">
                         <label for="questions[0][image]">Изображение</label>
                         <input type="file" name="questions[0][image]" class="form-control @error('questions.0.image') is-invalid @enderror">

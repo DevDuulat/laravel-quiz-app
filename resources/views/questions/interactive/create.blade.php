@@ -79,7 +79,7 @@
                     <div class="question-block" id="initial-question-block">
                         <div class="form-group">
                             <label for="question">Вопрос</label>
-                            <input type="text" name="questions[0][question]" class="form-control">
+                            <textarea type="textarea" name="questions[0][question]" class="form-control"></textarea>
                         </div>
                         <div class="col-xs-12 mb-3">
                             <div class="form-group">
