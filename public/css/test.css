@@ -5,11 +5,11 @@
 	color: #fff;
 	background: #007bff;
 }
-.test_boxs {
+.test_box {
 	position: relative;
 	z-index: 1;
+    padding-top: 350px;
 	background: url(../images/bg.jpg);
-	padding: 213px 0 0;
 	background-size: cover;
     background-position: center;
 	background-repeat: no-repeat;
@@ -99,13 +99,14 @@
 }
 
 .quiz_box {
-	width: 550px;
-	background: #fff;
-	border-radius: 5px;
-	transform: translate(50%, -100%) scale(0.9);
-	opacity: 0;
-	pointer-events: none;
-	transition: all 0.3s ease;
+    width: 576px;
+    text-align: center;
+    background: #fff;
+    border-radius: 5px;
+    transform: translate(50%, -80%) scale(0.9);
+    opacity: 0;
+    pointer-events: none;
+    transition: all 0.3s ease;
 }
 
 .quiz_box header {

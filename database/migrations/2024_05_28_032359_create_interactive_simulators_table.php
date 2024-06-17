@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('interactive_simulators', function (Blueprint $table) {
             $table->id();
             $table->string('question');
+            $table->string('image', 255)->nullable();
             $table->string('answer');
             $table->json('options')->nullable();
             $table->unsignedBigInteger('test_id');

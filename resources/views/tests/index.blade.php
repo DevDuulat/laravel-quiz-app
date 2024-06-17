@@ -41,19 +41,22 @@
                     <form action="{{ route('tests.destroy', $test->id) }}" method="POST">
                         <a href="{{ route('test-interactive.create', $test->id) }}" class="btn btn-info">
                             <i class="bi bi-clipboard-plus"></i>
-                            Создать интерактив
+                            Создать викторину
+
                         </a>
                         <a href="{{ route('test-interactive.show', $test->id) }}" class="btn btn-info">
                             <i class="bi bi-clipboard-check"></i>
-                            Показать интерактив
+                            Показать викторину
+
                         </a>
                         <a href="{{ route('simulator-quiz.create', $test->id) }}" class="btn btn-info">
-                            <i class="bi bi-clipboard-check"></i>
-                            Создать викторину
+                            <i class="bi bi-clipboard-plus"></i>
+                            Создать интерактив
+
                         </a>
                         <a href="{{ route('simulator-quiz.show', $test->id) }}" class="btn btn-info">
-                            <i class="bi bi-controller"></i> <!-- Иконка интерактивного тренажера -->
-                            Показать викторину
+                            <i class="bi bi-clipboard-check"></i><!-- Иконка интерактивного тренажера -->
+                            Показать интерактив
                         </a>
 
                         <a href="{{ route('tests.show', $test->id) }}" class="btn btn-info">

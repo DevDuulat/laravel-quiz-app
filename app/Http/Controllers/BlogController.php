@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 
+use App\Http\Requests\BlogRequest;
 use App\Models\Blog;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 
@@ -27,18 +27,8 @@ class BlogController extends Controller
         return view('blogs.create');
     }
 
-
-
-    public function store(Request $request)
+    public function store(BlogRequest $request)
     {
-        $request->validate([
-            'title' => 'required|string|max:255',
-            'description' => 'required|string',
-            'publication_date' => 'required|date',
-            'cover' => 'nullable|file|max:2048|mimes:jpeg,png,jpg',
-            'content' => 'required|string',
-        ]);
-
         if ($request->hasFile('cover')) {
             $coverPath = $request->file('cover')->store('covers', 'public');
             $requestData = $request->except('cover');
@@ -55,8 +45,6 @@ class BlogController extends Controller
             ->with('success', 'Блог успешно создан.');
     }
 
-
-
     public function show(Blog $blog)
     {
         return view('blogs.show', compact('blog'));
@@ -67,16 +55,8 @@ class BlogController extends Controller
         return view('blogs.edit', compact('blog'));
     }
 
-    public function update(Request $request, Blog $blog)
+    public function update(BlogRequest $request, Blog $blog)
     {
-        $request->validate([
-            'title' => 'required|string|max:255',
-            'description' => 'required|string',
-            'publication_date' => 'required|date',
-            'cover' => 'nullable|file|max:2048|mimes:jpeg,png,jpg',
-            'content' => 'required|string',
-        ]);
-
         if ($request->hasFile('cover')) {
             $coverPath = $request->file('cover')->store('covers', 'public');
 

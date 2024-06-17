@@ -2,16 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\LectureRequest;
 use App\Models\Lecture;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
 
 class LectureController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+
     public function __construct()
     {
         $this->middleware('admin');
@@ -23,33 +21,18 @@ class LectureController extends Controller
 
     public function index()
     {
-        $lectures = Lecture::latest()->paginate(10);
+        $lectures = Lecture::latest()->paginate(5);
         return view('lectures.index', compact('lectures'));
     }
 
 
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create()
     {
         return view('lectures.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-
-    public function store(Request $request)
+    public function store(LectureRequest $request)
     {
-        $request->validate([
-            'title' => 'required|string|max:255',
-            'text' => 'required',
-            'publication_date' => 'required|date',
-            'image_url' => 'nullable|file|max:2048|mimes:jpeg,png,jpg',
-
-        ]);
-
         if ($request->hasFile('image_url')) {
             $coverPath = $request->file('image_url')->store('covers', 'public');
             $image = $request->file('image_url');
@@ -74,26 +57,13 @@ class LectureController extends Controller
         return view('lectures.show', compact('lecture'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
     public function edit(Lecture $lecture)
     {
         return view('lectures.edit', compact('lecture'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, Lecture $lecture)
+    public function update(LectureRequest $request, Lecture $lecture)
     {
-        $request->validate([
-            'title' => 'required|string|max:255',
-            'text' => 'required|string',
-            'publication_date' => 'required|date',
-            'image_url' => 'nullable|file|max:2048|mimes:jpeg,png,jpg',
-        ]);
-
         $requestData = $request->except('image_url');
 
         if ($request->hasFile('image_url')) {
@@ -112,18 +82,11 @@ class LectureController extends Controller
             ->with('success', 'Лекция успешно обновлена.');
     }
 
-
-
-
-    /**
-     * Remove the specified resource from storage.
-     */
     public function destroy(Lecture $lecture)
     {
         $lecture->delete();
 
         return redirect()->route('lectures.index')
-            ->with('success', 'Lecture deleted successfully');
+            ->with('success', 'Лекция успешно удалена');
     }
-
 }

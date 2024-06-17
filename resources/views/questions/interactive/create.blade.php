@@ -22,7 +22,7 @@
                 </ul>
             </div>
         @endif
-        <form action="{{ route('test-interactive.store', ['test' => $test->id]) }}" method="POST" id="question-form">
+        <form action="{{ route('test-interactive.store', ['test' => $test->id]) }}" method="POST" id="question-form" enctype="multipart/form-data">
             @csrf
             <div id="question-blocks">
                 @if (old('questions'))
@@ -34,6 +34,12 @@
                                 @error('questions.'.$key.'.question')
                                 <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror
+                            </div>
+                            <div class="col-xs-12 mb-3">
+                                <div class="form-group">
+                                    <strong>Изображение:</strong>
+                                    <input type="file" name="questions[{{ $key }}][image]" class="form-control">
+                                </div>
                             </div>
                             <div class="form-group">
                                 <label for="answer">Ответ</label>
@@ -73,7 +79,13 @@
                     <div class="question-block" id="initial-question-block">
                         <div class="form-group">
                             <label for="question">Вопрос</label>
-                            <input type="text" name="questions[0][question]" class="form-control">
+                            <textarea type="textarea" name="questions[0][question]" class="form-control"></textarea>
+                        </div>
+                        <div class="col-xs-12 mb-3">
+                            <div class="form-group">
+                                <strong>Изображение:</strong>
+                                <input type="file" name="questions[0][image]" class="form-control">
+                            </div>
                         </div>
                         <div class="form-group">
                             <label for="answer">Ответ</label>
@@ -95,7 +107,7 @@
                                     <input type="text" name="options[0][options][]" class="form-control mb-2" value="Вариант 4">
                                 </div>
                             </div>
-{{--                            <button type="button" class="btn btn-secondary add-option mt-2" data-key="0">Добавить Вариант</button>--}}
+                            {{--                            <button type="button" class="btn btn-secondary add-option mt-2" data-key="0">Добавить Вариант</button>--}}
                         </div>
                     </div>
                 @endif
@@ -116,12 +128,6 @@
             optionsContainer.appendChild(optionBlock);
         }
 
-        // document.querySelectorAll('.add-option').forEach(button => {
-        //     button.addEventListener('click', () => {
-        //         addOptionBlock(button.dataset.key);
-        //     });
-        // });
-
         function addQuestionBlock() {
             var questionBlock = document.querySelector('.question-block').cloneNode(true);
             questionBlock.removeAttribute('id'); // Remove id from the cloned block
@@ -131,6 +137,9 @@
                 if (input.name.includes('options')) {
                     input.name = input.name.replace(/\[\d+\]/, '[' + questionCount + ']');
                     input.value = '';
+                } else if (input.type === 'file') {
+                    input.name = input.name.replace(/\[\d+\]/, '[' + questionCount + ']');
+                    input.value = null;
                 } else {
                     input.name = input.name.replace(/\[\d+\]/, '[' + questionCount + ']');
                     input.value = '';

@@ -13,7 +13,7 @@ class InteractiveSimulatorController extends Controller
         $this->middleware('admin');
         $this->middleware('auth');
     }
-    //
+
     public function create(Test $test)
     {
         return view('questions.interactive.create', compact('test'));
@@ -25,29 +25,25 @@ class InteractiveSimulatorController extends Controller
 
     public function update(Request $request, Test $test, InteractiveSimulator $question)
     {
-        $attributes = [];
-
-        $attributes['question'] = $request->input('question');
-        $attributes['answer'] = $request->input('answer');
-        $attributes['options'] = json_decode($request->input('options'), true);
-
-        $request->validate([
+        $attributes = $request->validate([
             'question' => 'required|string',
             'answer' => 'required|string',
             'options' => 'nullable|string',
-        ], [
-            'question.required' => 'Поле :attribute обязательно для заполнения.',
-            'answer.required' => 'Поле :attribute обязательно для заполнения.',
-        ], $attributes);
-
-        $question->update([
-            'question' => $request->input('question'),
-            'answer' => $request->input('answer'),
-            'options' => json_decode($request->input('options'), true),
         ]);
-        return redirect()->route('test-interactive.show', ['test' => $test->id])
-            ->with('success', 'Вопросы созданы успешно.');
 
+        $question->question = $attributes['question'];
+        $question->answer = $attributes['answer'];
+        $question->options = json_decode($attributes['options'], true);
+
+        if ($request->hasFile('image')) {
+            $imagePath = $request->file('image')->store('images', 'public');
+            $question->image = $imagePath;
+        }
+
+        $question->save();
+
+        return redirect()->route('test-interactive.show', ['test' => $test->id])
+            ->with('success', 'Вопрос успешно обновлен.');
     }
 
     public function show(Test $test)
@@ -70,15 +66,20 @@ class InteractiveSimulatorController extends Controller
             $questionIndex = $index + 1;
             $attributes["questions.{$index}.question"] = "вопрос {$questionIndex}";
             $attributes["answers.{$index}.answer"] = "ответ {$questionIndex}";
+            $attributes["questions.{$index}.image"] = "изображение для вопроса {$questionIndex}";
         }
 
         $request->validate([
             'questions.*.question' => 'required|string',
+            'questions.*.image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'answers.*.answer' => 'required|string',
             'options.*.options' => 'nullable|string',
         ], [
             'questions.*.question.required' => 'Поле :attribute обязательно для заполнения.',
             'answers.*.answer.required' => 'Поле :attribute обязательно для заполнения.',
+            'questions.*.image.image' => 'Файл :attribute должен быть изображением.',
+            'questions.*.image.mimes' => 'Изображение для :attribute должно быть одного из следующих типов: jpeg, png, jpg, gif, svg.',
+            'questions.*.image.max' => 'Изображение для :attribute не должно превышать 2048 KB.',
         ], $attributes);
 
         $test = Test::findOrFail($test_id);
@@ -92,11 +93,17 @@ class InteractiveSimulatorController extends Controller
                 'options' => $options,
             ]);
 
+            if ($request->hasFile("questions.{$key}.image")) {
+                $imagePath = $request->file("questions.{$key}.image")->store('images', 'public');
+                $question->image = $imagePath;
+            }
+
             $test->interactiveSimulator()->save($question);
         }
-        return redirect()->route('tests.index')->with('success', 'Вопрос успешно обновлен.');
 
+        return redirect()->route('tests.index')->with('success', 'Вопрос успешно обновлен.');
     }
+
 
     public function destroy(Test $test, InteractiveSimulator $question)
     {

@@ -22,7 +22,7 @@
                 </ul>
             </div>
         @endif
-        <form action="{{ route('simulator-quiz.update', ['test' => $test->id, 'question' => $question->id]) }}" method="POST" id="question-form">
+        <form action="{{ route('simulator-quiz.update', ['test' => $test->id, 'question' => $question->id]) }}" method="POST" id="question-form" enctype="multipart/form-data">
             @csrf
             @method('PUT')
             <div id="question-blocks">
@@ -38,6 +38,13 @@
                         <label for="questions[0][correct_answer]">Правильный ответ</label>
                         <input type="text" name="questions[0][correct_answer]" class="form-control @error('questions.0.correct_answer') is-invalid @enderror" value="{{ old('questions.0.correct_answer', $question->correct_answer) }}">
                         @error('questions.0.correct_answer')
+                        <div class="invalid-feedback">{{ $message }}</div>
+                        @enderror
+                    </div>
+                    <div class="form-group">
+                        <label for="questions[0][image]">Изображение</label>
+                        <input type="file" name="questions[0][image]" class="form-control @error('questions.0.image') is-invalid @enderror">
+                        @error('questions.0.image')
                         <div class="invalid-feedback">{{ $message }}</div>
                         @enderror
                     </div>

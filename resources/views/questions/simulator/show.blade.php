@@ -7,11 +7,16 @@
             padding: 10px;
             margin-bottom: 20px;
         }
+        .question img {
+            max-width: 200px; /* Установите желаемую ширину изображения */
+            height: auto;
+            margin-top: 10px;
+        }
     </style>
     <div class="row">
         <div class="col-lg-12 margin-tb mb-4">
             <div class="pull-left">
-                <h2>Тренажер викторина
+                <h2>Интерактивный тренажёр
                     <div class="float-end">
                         <a class="btn btn-primary" href="{{ route('tests.index') }}"> Назад</a>
                     </div>
@@ -31,6 +36,9 @@
                                 <li>{{ $option }}</li>
                             @endforeach
                         </ul>
+                    @endif
+                    @if (!empty($question->image))
+                        <img src="{{ asset('storage/' . $question->image) }}" alt="Image">
                     @endif
                     <a href="{{ route('simulator-quiz.edit', ['test' => $test->id, 'question' => $question->id]) }}" class="btn btn-primary">Редактировать</a>
                     <form action="{{ route('simulator-quiz.destroy', ['test' => $test->id, 'question' => $question->id]) }}" method="POST" style="display:inline;">

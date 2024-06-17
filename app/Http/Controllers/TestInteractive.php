@@ -7,7 +7,6 @@ use Illuminate\Http\Request;
 
 class TestInteractive extends Controller
 {
-    //
     public function __construct()
     {
         $this->middleware('admin');
