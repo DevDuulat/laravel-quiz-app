@@ -1,3 +1,6 @@
 img.img-fluid.image-card-block {
     width: 300px !important;
 }
+.image-preview {
+    width: 500px;
+}
