@@ -33,13 +33,12 @@ class ImageQuizController extends Controller
 
         foreach ($request->questions as $questionData) {
             $imagePaths = [];
-            if (isset($questionData['images'])) {
-                foreach ($questionData['images'] as $image) {
-                    $path = $image->store('images', 'public');
-                    $imagePaths[] = $path;
-                }
+            foreach ($questionData['images'] as $image) {
+                $path = $image->store('images', 'public');
+                $imagePaths[] = $path;
             }
 
+            // Преобразуем строку правильной последовательности в массив
             $correctSequenceArray = explode(',', $questionData['correct_sequence']);
 
             $imageQuiz = new ImageQuiz([
@@ -95,6 +94,7 @@ class ImageQuizController extends Controller
         $imageQuiz->correct_sequence = $correctSequenceArray;
 
         $imageQuiz->save();
+        \Log::info('Saved Image Quiz:', $imageQuiz->toArray());
 
         return redirect()->route('tests.index')
             ->with('success', 'Вопрос успешно обновлен.');

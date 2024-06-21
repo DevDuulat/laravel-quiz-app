@@ -36,6 +36,17 @@
                 </div>
             </div>
 
+            <div class="col-12 pt--100">
+                <h3 class="pb-5">Пазл Тренажер</h3>
+                <div class="wrapper__box">
+                    @foreach($testsWithPuzzleQuestions as $test)
+                        <div class="test__content-box">
+                            <h5 class="test__content-box-title">{{ $test->name ?? 'Название теста' }}</h5>
+                            <a href="{{ route('test.image-quiz', $test->id) }}" class="test__content-box-button">Пройти тест</a>
+                        </div>
+                    @endforeach
+                </div>
+            </div>
         </div>
     </div>
 @endsection
