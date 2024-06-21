@@ -34,7 +34,11 @@ class ContentController extends Controller
             return $test->quizSimulator()->exists();
         });
 
-        return view('content.tests', compact('testsWithInteractiveQuestions', 'testsWithQuizQuestions'));
+        $testsWithPuzzleQuestions = $tests->filter(function ($test) {
+            return $test->imageQuiz()->exists();
+        });
+
+        return view('content.tests', compact('testsWithInteractiveQuestions', 'testsWithQuizQuestions', 'testsWithPuzzleQuestions'));
     }
 
     public function showLecture($id)
@@ -67,5 +71,12 @@ class ContentController extends Controller
         $questions = $test->interactiveSimulator;
 
         return view('content.test', compact('test', 'questions'));
+    }
+
+    public function ImageQuizShow($id)
+    {
+        $test = Test::with('imageQuiz')->findOrFail($id);
+        $questions = $test->imageQuiz;
+        return view('content.image-quiz', compact('test', 'questions'));
     }
 }

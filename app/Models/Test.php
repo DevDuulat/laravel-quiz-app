@@ -21,4 +21,8 @@ class Test extends Model
     {
         return $this->hasMany(SimulatorQuiz::class);
     }
+    public function imageQuiz()
+    {
+        return $this->hasMany(ImageQuiz::class);
+    }
 }

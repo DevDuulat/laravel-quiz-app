@@ -55,7 +55,7 @@ Route::group(['middleware' => 'auth'], function () {
     // Interactive Simulator and Quiz Routes
     Route::get('/content/simulator-quiz/{test}', [ContentController::class, 'SimulatorQuizShow'])->name('test.simulator-quiz');
     Route::get('/content/interactive-simulator/{test}', [ContentController::class, 'InteractiveSimulatorShow'])->name('test.interactive-simulator');
-    Route::get('/content/image-quiz/{test}', [ContentController::class, 'ImageQuizShow'])->name('test.interactive-simulator');
+    Route::get('/content/image-quiz/{test}', [ContentController::class, 'ImageQuizShow'])->name('test.image-quiz');
 
     // Lecture Access
     Route::post('/lecture-access', [LectureAccessController::class, 'store']);
