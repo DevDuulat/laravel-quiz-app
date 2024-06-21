@@ -3,6 +3,7 @@
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\ContentController;
+use App\Http\Controllers\ImageQuizController;
 use App\Http\Controllers\InteractiveSimulatorController;
 use App\Http\Controllers\LectureAccessController;
 use App\Http\Controllers\LectureController;
@@ -54,6 +55,7 @@ Route::group(['middleware' => 'auth'], function () {
     // Interactive Simulator and Quiz Routes
     Route::get('/content/simulator-quiz/{test}', [ContentController::class, 'SimulatorQuizShow'])->name('test.simulator-quiz');
     Route::get('/content/interactive-simulator/{test}', [ContentController::class, 'InteractiveSimulatorShow'])->name('test.interactive-simulator');
+    Route::get('/content/image-quiz/{test}', [ContentController::class, 'ImageQuizShow'])->name('test.interactive-simulator');
 
     // Lecture Access
     Route::post('/lecture-access', [LectureAccessController::class, 'store']);
@@ -83,13 +85,20 @@ Route::prefix('tests/{test}')->group(function () {
     Route::delete('test-interactive/{question}', [InteractiveSimulatorController::class, 'destroy'])->name('test-interactive.destroy');
 
 
-
     Route::get('simulator-quiz/create', [SimulatorQuizController::class, 'create'])->name('simulator-quiz.create');
     Route::post('simulator-quiz', [SimulatorQuizController::class, 'store'])->name('simulator-quiz.store');
     Route::get('simulator-quiz/questions', [SimulatorQuizController::class, 'show'])->name('simulator-quiz.show');
     Route::get('simulator-quiz/{question}/edit', [SimulatorQuizController::class,'edit'])->name('simulator-quiz.edit');
     Route::put('simulator-quiz/{question}', [SimulatorQuizController::class, 'update'])->name('simulator-quiz.update');
     Route::delete('simulator-quiz/{question}', [SimulatorQuizController::class, 'destroy'])->name('simulator-quiz.destroy');
+
+    Route::get('image-quiz/create', [ImageQuizController::class, 'create'])->name('image-quiz.create');
+    Route::post('image-quiz', [ImageQuizController::class, 'store'])->name('image-quiz.store');
+    Route::get('image-quiz/questions', [ImageQuizController::class, 'show'])->name('image-quiz.show');
+    Route::get('image-quiz/{imageQuiz}/edit', [ImageQuizController::class,'edit'])->name('image-quiz.edit');
+    Route::put('image-quiz/{imageQuiz}', [ImageQuizController::class, 'update'])->name('image-quiz.update');
+    Route::delete('image-quiz/{question}', [ImageQuizController::class, 'destroy'])->name('image-quiz.destroy');
+
 });
 
 // Authentication Routes

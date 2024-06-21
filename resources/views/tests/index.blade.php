@@ -39,24 +39,32 @@
                 <td>{!! Str::limit($test->description, 250)  !!}</td>
                 <td>
                     <form action="{{ route('tests.destroy', $test->id) }}" method="POST">
-                        <a href="{{ route('test-interactive.create', $test->id) }}" class="btn btn-info">
+                        <a href="{{ route('test-interactive.create', $test->id) }}" class="btn btn-info m-2">
                             <i class="bi bi-clipboard-plus"></i>
                             Создать викторину
 
                         </a>
-                        <a href="{{ route('test-interactive.show', $test->id) }}" class="btn btn-info">
+                        <a href="{{ route('test-interactive.show', $test->id) }}" class="btn btn-info m-2">
                             <i class="bi bi-clipboard-check"></i>
                             Показать викторину
 
                         </a>
-                        <a href="{{ route('simulator-quiz.create', $test->id) }}" class="btn btn-info">
+                        <a href="{{ route('simulator-quiz.create', $test->id) }}" class="btn btn-info m-2">
                             <i class="bi bi-clipboard-plus"></i>
                             Создать интерактив
 
                         </a>
-                        <a href="{{ route('simulator-quiz.show', $test->id) }}" class="btn btn-info">
+                        <a href="{{ route('simulator-quiz.show', $test->id) }}" class="btn btn-info m-2">
                             <i class="bi bi-clipboard-check"></i><!-- Иконка интерактивного тренажера -->
                             Показать интерактив
+                        </a>
+                        <a href="{{ route('image-quiz.create', $test->id) }}" class="btn btn-info m-2">
+                            <i class="bi bi-clipboard-plus"></i>
+                            Создать Пазл Тренажер
+                        </a>
+                        <a href="{{ route('image-quiz.show', $test->id) }}" class="btn btn-info m-2">
+                            <i class="bi bi-clipboard-check"></i><!-- Иконка интерактивного тренажера -->
+                            Показать Пазл Тренажер
                         </a>
 
                         <a href="{{ route('tests.show', $test->id) }}" class="btn btn-info">
