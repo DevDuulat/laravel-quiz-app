@@ -18,7 +18,7 @@
                     @foreach($testsWithInteractiveQuestions as $test)
                         <div class="test__content-box">
                             <h5 class="test__content-box-title">{{ $test->name ?? 'Название теста' }}</h5>
-                            <a href="{{ route('test.interactive-simulator', $test->id) }}" class="test__content-box-button">Пройти тест</a>
+                            <a href="{{ route('test.interactive-simulator', $test->id) }}" class="test__content-box-button">Пройти тренажёр</a>
                         </div>
                     @endforeach
                 </div>
@@ -30,7 +30,7 @@
                     @foreach($testsWithQuizQuestions as $test)
                         <div class="test__content-box">
                             <h5 class="test__content-box-title">{{ $test->name ?? 'Название теста' }}</h5>
-                            <a href="{{ route('test.simulator-quiz', $test->id) }}" class="test__content-box-button">Пройти тест</a>
+                            <a href="{{ route('test.simulator-quiz', $test->id) }}" class="test__content-box-button">Пройти тренажёр</a>
                         </div>
                     @endforeach
                 </div>
@@ -42,7 +42,7 @@
                     @foreach($testsWithPuzzleQuestions as $test)
                         <div class="test__content-box">
                             <h5 class="test__content-box-title">{{ $test->name ?? 'Название теста' }}</h5>
-                            <a href="{{ route('test.image-quiz', $test->id) }}" class="test__content-box-button">Пройти тест</a>
+                            <a href="{{ route('test.image-quiz', $test->id) }}" class="test__content-box-button">Пройти тренажёр</a>
                         </div>
                     @endforeach
                 </div>

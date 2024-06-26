@@ -68,33 +68,35 @@ class ImageQuizController extends Controller
 
     public function edit(Test $test, ImageQuiz $imageQuiz)
     {
+
         return view('questions.image-quiz.edit', compact('test', 'imageQuiz'));
     }
 
     public function update(Request $request, Test $test, ImageQuiz $imageQuiz)
     {
         $request->validate([
-            'question' => 'required|string|max:255',
-            'images.*' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-            'correct_sequence' => 'required|string',
+            'questions.*.question' => 'required|string|max:255',
+            'questions.*.images.*' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'questions.*.correct_sequence' => 'required|string',
         ]);
 
-        $imageQuiz->question = $request->question;
+        $questionData = $request->input('questions')[0];
 
-        if ($request->hasFile('images')) {
+        $imageQuiz->question = $questionData['question'];
+
+        if ($request->hasFile('questions.0.images')) {
             $imagePaths = [];
-            foreach ($request->file('images') as $image) {
+            foreach ($request->file('questions.0.images') as $image) {
                 $path = $image->store('images', 'public');
                 $imagePaths[] = $path;
             }
             $imageQuiz->images = $imagePaths;
         }
 
-        $correctSequenceArray = explode(',', $request->correct_sequence);
+        $correctSequenceArray = explode(',', $questionData['correct_sequence']);
         $imageQuiz->correct_sequence = $correctSequenceArray;
 
         $imageQuiz->save();
-        \Log::info('Saved Image Quiz:', $imageQuiz->toArray());
 
         return redirect()->route('tests.index')
             ->with('success', 'Вопрос успешно обновлен.');
