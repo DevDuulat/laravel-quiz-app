@@ -106,8 +106,7 @@ class ImageQuizController extends Controller
     {
         $imageQuiz->delete();
 
-        return redirect()->route('tests.show', $test->id)
-            ->with('success', 'Вопрос успешно удален');
+        return back()->with('success', 'Вопрос успешно удален.');
     }
 
 }
