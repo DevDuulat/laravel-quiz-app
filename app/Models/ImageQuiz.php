@@ -15,4 +15,9 @@ class ImageQuiz extends Model
         'images' => 'array',
         'correct_sequence' => 'array',
     ];
+
+    public function test()
+    {
+        return $this->belongsTo(Test::class);
+    }
 }
