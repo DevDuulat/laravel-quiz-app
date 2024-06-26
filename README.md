@@ -72,12 +72,12 @@ List any prerequisites that are needed to run your project, such as:
     ```bash
    npm run build
    ```
-10. **Удалите текущую символическую ссылку (если она существует):**
+10.**Delete the current symbolic link (if it exists):**
 
    ```bash
    rm -rf public/storage
    ```
-11. **Создайте новую символическую ссылку:**
+11. **Create a new symbolic link:**
 
     ```bash
     php artisan storage:link
