@@ -7,9 +7,9 @@
             <div class="row">
                 <div class="container">
                     <div class="row">
-                        <div class="col-md-12">
+                        <div class="col-md-12 start_btn-container">
                             <div class="start_btn d-flex justify-content-center">
-                                <button class="start_btn btn btn-primary">Пройти тест</button>
+                                <button class="start_btn btn btn-primary">Пройти тренажёр</button>
                             </div>
                         </div>
                     </div>
@@ -26,7 +26,7 @@
                         <div class="info">5. Вы получите баллы за правильные ответы.</div>
                     </div>
                     <div class="buttons">
-                        <button class="quit">Выйти из теста</button>
+                        <button class="quit">Выйти из тренажера</button>
                         <button class="restart">Начать</button>
                     </div>
                 </div>
@@ -275,5 +275,6 @@
             let totalQueCounTag = '<span><p>' + index + '</p> из <p>' + questions.length + '</p> Вопросы</span>';
             bottom_ques_counter.innerHTML = totalQueCounTag;
         }
+
     </script>
 @endsection
