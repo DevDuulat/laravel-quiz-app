@@ -125,16 +125,24 @@
             }
 
             function removeImageInput(e) {
+                const inputGroup = e.target.closest('.input-group');
                 const questionItem = e.target.closest('.question-item');
-                e.target.closest('.input-group').remove();
+                const inputIndex = Array.from(inputGroup.parentNode.children).indexOf(inputGroup);
+
+                inputGroup.remove();
                 updateCorrectSequenceInput();
                 toggleRemoveImageButtons(questionItem);
+
+                const preview = questionItem.querySelector('.image-preview');
+                if (preview.children[inputIndex]) {
+                    preview.children[inputIndex].remove();
+                }
             }
 
             function previewImage(e) {
                 const preview = e.target.closest('.form-group').querySelector('.image-preview');
                 preview.innerHTML = '';
-                Array.from(e.target.closest('.form-group').querySelectorAll('input[type="file"]')).forEach(input => {
+                Array.from(e.target.closest('.form-group').querySelectorAll('input[type="file"]')).forEach((input, index) => {
                     if (input.files.length > 0) {
                         const reader = new FileReader();
                         reader.onload = function(event) {
@@ -142,6 +150,7 @@
                             img.src = event.target.result;
                             img.style.maxWidth = '150px';
                             img.style.margin = '10px';
+                            img.setAttribute('data-index', index);
                             preview.appendChild(img);
                         }
                         reader.readAsDataURL(input.files[0]);
@@ -180,7 +189,4 @@
             });
         });
     </script>
-
-
-
 @endsection

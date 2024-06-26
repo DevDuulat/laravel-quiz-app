@@ -23,7 +23,7 @@
             </div>
         @endif
 
-            <form action="{{ route('image-quiz.update', ['test' => $test->id, 'imageQuiz' => $imageQuiz->id]) }}" method="POST" enctype="multipart/form-data">
+        <form action="{{ route('image-quiz.update', ['test' => $test->id, 'imageQuiz' => $imageQuiz->id]) }}" method="POST" enctype="multipart/form-data">
             @csrf
             @method('PUT')
 
@@ -39,14 +39,15 @@
                             @foreach ($imageQuiz->images as $index => $image)
                                 <div class="input-group mb-3">
                                     <input type="file" name="images[]" class="form-control">
-                                    <button type="button" class="btn btn-danger btn-remove-image">Удалить</button>
+                                    @if ($index > 0 || count($imageQuiz->images) > 1)
+                                        <button type="button" class="btn btn-danger btn-remove-image">Удалить</button>
+                                    @endif
                                 </div>
                                 <div class="image-preview mt-3">
                                     <img src="{{ asset('storage/' . $image) }}" class="img-fluid mb-2" alt="Изображение">
                                 </div>
                             @endforeach
                         </div>
-                        <button type="button" class="btn btn-secondary add-image-btn">Добавить изображение</button>
                     </div>
                     <div class="form-group">
                         <label for="correct_sequence">Правильная последовательность (массив)</label>
@@ -95,19 +96,14 @@
         document.getElementById('question-container').addEventListener('click', function(e) {
             if (e.target.classList.contains('btn-remove-question')) {
                 e.target.closest('.question-item').remove();
-                updateCorrectSequenceInput();
-            } else if (e.target.classList.contains('add-image-btn')) {
-                const container = e.target.previousElementSibling;
-                const div = document.createElement('div');
-                div.className = 'input-group mb-3';
-                div.innerHTML = `
-                    <input type="file" name="${e.target.previousElementSibling.querySelector('input[type=file]').name}" class="form-control" required>
-                    <button type="button" class="btn btn-danger btn-remove-image">Удалить</button>
-                `;
-                container.appendChild(div);
+                updateQuestionIndexes();
             } else if (e.target.classList.contains('btn-remove-image')) {
-                e.target.closest('.input-group').remove();
+                const inputGroup = e.target.closest('.input-group');
+                const preview = inputGroup.nextElementSibling;
+                inputGroup.remove();
+                preview.innerHTML = ''; // Очистить превью изображения при удалении
                 updateCorrectSequenceInput();
+                updateRemoveButtons();
             }
         });
 
@@ -142,6 +138,28 @@
                     }
                 });
                 item.querySelector('.correct-sequence').value = correctSequence.join(',');
+            });
+        }
+
+        function updateQuestionIndexes() {
+            document.querySelectorAll('.question-item').forEach((item, index) => {
+                item.querySelector('.form-group > label').textContent = `Вопрос ${index + 1}`;
+            });
+            updateRemoveButtons();
+        }
+
+        function updateRemoveButtons() {
+            document.querySelectorAll('.question-item').forEach(item => {
+                const removeButtons = item.querySelectorAll('.btn-remove-image');
+                if (removeButtons.length > 1) {
+                    removeButtons.forEach(btn => {
+                        btn.style.display = 'inline-block';
+                    });
+                } else {
+                    removeButtons.forEach(btn => {
+                        btn.style.display = 'none';
+                    });
+                }
             });
         }
     </script>
