@@ -90,33 +90,33 @@ To seed the database with the `BlogsTableSeeder`, use the following command:
 
 ```sh
 php artisan db:seed --class=BlogsTableSeeder
-
+```
 
 
 ## Project Screenshots
 
-### Screenshot 1: Home Page
-![Home Page](https://github.com/DevDuulat/laravel-quiz-app/blob/main/screenshots/homepage.png)
-The home page provides an overview of the application and its features.
+Project Screenshots
+Screenshot 1: Home Page
 
-### Screenshot 2: Profile Page
-![Profile Page](https://github.com/DevDuulat/laravel-quiz-app/blob/main/screenshots/profile-page.png)
-The profile page displays user information and their activity within the app.
+<img src="https://github.com/DevDuulat/laravel-quiz-app/blob/main/screenshots/homepage.png"/>
 
-### Screenshot 3: Blog
-![Blog](https://github.com/DevDuulat/laravel-quiz-app/blob/main/screenshots/blog.png)
-The blog section where users can read and post articles.
+Screenshot 2: Profile Page
+ 
+<img src="https://github.com/DevDuulat/laravel-quiz-app/blob/main/screenshots/profile-page.png"/>
+ 
+Screenshot 3: Blog
 
-### Screenshot 4: Create Test Quiz
-![Create Test Quiz](https://github.com/DevDuulat/laravel-quiz-app/blob/main/screenshots/tests.png)
-This page allows users to create a new test quiz with various questions.
+<img src="https://github.com/DevDuulat/laravel-quiz-app/blob/main/screenshots/blog.png"/>
 
-### Screenshot 5: Test Quiz for User
-![Test Quiz for User](https://github.com/DevDuulat/laravel-quiz-app/blob/main/screenshots/test.png)
-Users can take quizzes and test their knowledge on different topics.
+Screenshot 4: Create Test Quiz
 
-### Screenshot 6: Lectures
-![Lectures](https://github.com/DevDuulat/laravel-quiz-app/blob/main/screenshots/lectures.png)
-The lectures section where users can access educational materials and resources.
+<img src="https://github.com/DevDuulat/laravel-quiz-app/blob/main/screenshots/tests.png"/>
 
+Screenshot 5: Test Quiz for User
+
+<img src="https://github.com/DevDuulat/laravel-quiz-app/blob/main/screenshots/test.png"/>
+
+Screenshot 6: Lectures
+
+<img src="https://github.com/DevDuulat/laravel-quiz-app/blob/main/screenshots/lectures.png"/>
 
