@@ -142,8 +142,8 @@
         $questionsData = $questions->map(function($question) {
             return [
                 'question' => $question->question,
-                'sequence' => implode(',', $question->correct_sequence), // Преобразуем массив в строку для data-sequence
-                'images' => $question->images
+                'sequence' => json_encode($question->correct_sequence),
+                'images' => json_encode($question->images)
             ];
         });
     @endphp
@@ -171,13 +171,14 @@
             imageContainer.classList.add('image-container');
             imageContainer.setAttribute('data-sequence', questionData.sequence); // Устанавливаем правильную последовательность
 
-            const shuffledImages = shuffle([...questionData.images]);
+            const images = JSON.parse(questionData.images);
+            const shuffledImages = shuffle([...images]);
 
             shuffledImages.forEach((src, index) => {
                 const imageWrapper = document.createElement('div');
                 imageWrapper.classList.add('image-wrapper');
                 imageWrapper.setAttribute('draggable', true);
-                imageWrapper.setAttribute('data-index', index + 1); // Начинаем с 1 для удобства пользователя
+                imageWrapper.setAttribute('data-index', images.indexOf(src) + 1); // Сохранение исходного индекса изображения
 
                 const img = document.createElement('img');
                 img.src = `{{ asset('storage') }}/${src}`;
@@ -236,7 +237,7 @@
 
             questions.forEach(question => {
                 const imageContainer = question.querySelector('.image-container');
-                const correctSequence = imageContainer.getAttribute('data-sequence').split(',');
+                const correctSequence = JSON.parse(imageContainer.getAttribute('data-sequence'));
                 const userSequence = [];
 
                 imageContainer.querySelectorAll('.image-wrapper').forEach(wrapper => {
