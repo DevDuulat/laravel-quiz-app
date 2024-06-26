@@ -32,8 +32,12 @@
                         </div>
                         <div class="mt-3">
                             <a href="{{ route('image-quiz.edit', ['test' => $test->id, 'imageQuiz' => $quizImage->id]) }}" class="btn btn-primary">Редактировать</a>
+                            <form action="{{ route('image-quiz.destroy', ['test' => $test->id, 'imageQuiz' => $quizImage->id]) }}" method="POST">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-danger" onclick="return confirm('Вы уверены?')">Удалить</button>
+                            </form>
                         </div>
-
                     </div>
                     <hr>
                 @endforeach

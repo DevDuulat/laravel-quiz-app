@@ -97,7 +97,8 @@ Route::prefix('tests/{test}')->group(function () {
     Route::get('image-quiz/questions', [ImageQuizController::class, 'show'])->name('image-quiz.show');
     Route::get('image-quiz/{imageQuiz}/edit', [ImageQuizController::class,'edit'])->name('image-quiz.edit');
     Route::put('image-quiz/{imageQuiz}', [ImageQuizController::class, 'update'])->name('image-quiz.update');
-    Route::delete('image-quiz/{question}', [ImageQuizController::class, 'destroy'])->name('image-quiz.destroy');
+    Route::delete('image-quiz/{imageQuiz}', [ImageQuizController::class, 'destroy'])
+        ->name('image-quiz.destroy');
 
 });
 
